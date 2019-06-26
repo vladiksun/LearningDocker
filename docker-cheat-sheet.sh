@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 ################  follow log ################
 sudo docker logs -f <container_name or ID>
 
