@@ -17,6 +17,9 @@ docker rm $(docker ps -aq)
 ################ Remove all containers using -f option (sends a SIG_KILL signal) ################
 docker rm -vf $(docker ps -a -q)
 
+################ Remove all containers except one  ################
+docker rm -vf $(docker ps -a | grep -v "openam" | awk 'NR>1 {print $1}')
+
 ################################################################
 ######################### Remove images ###########################
 ################ Remove all images
@@ -31,8 +34,9 @@ docker rmi \
   dockerinaction/ch3_myotherapp \
   java:6
 
+
 ################ check if container is running using metadata ################
-docker inspect --format "{{.State.Running}}" <container>
+docker inspect --format "{{.State.Running}}" <container_name>
 
 ################ search docker images in default repository ################
 docker search <search_pattern>
