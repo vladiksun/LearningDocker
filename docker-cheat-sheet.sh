@@ -87,3 +87,6 @@ docker run -h <openam.example.com> -p 8081:8080 --name <container_name>
 # Where the first 8081 is the local port and the second 8080 is the container port.
 
 ################################################################################################################################
+################  Mount local folder ################
+docker run -it --rm --name builder --volume %cd%:/home/project node:latest /bin/bash
+docker run -it --rm --name builder --volume %cd%:/home/project node:latest ls -la /home/project
