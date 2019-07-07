@@ -64,6 +64,7 @@ docker exec -t -i <container_name>  /bin/bash
 
 ################  jump into container bash as root ################
 docker exec --user="root" -it <container_name> /bin/bash
+docker attach <container_name>
 
 
 
@@ -87,6 +88,16 @@ docker run -h <openam.example.com> -p 8081:8080 --name <container_name>
 # Where the first 8081 is the local port and the second 8080 is the container port.
 
 ################################################################################################################################
+
 ################  Mount local folder ################
+# Windows
 docker run -it --rm --name builder --volume %cd%:/home/project node:latest /bin/bash
 docker run -it --rm --name builder --volume %cd%:/home/project node:latest ls -la /home/project
+
+# Linux via mount syntax
+docker run -it \
+  --rm \
+  --name builder \
+  --mount type=bind,source="$(pwd)"/,target=/home/project \
+    node:latest \
+    ls -la /home/project
