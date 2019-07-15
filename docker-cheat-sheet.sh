@@ -90,9 +90,12 @@ docker run -h <openam.example.com> -p 8081:8080 --name <container_name>
 ################################################################################################################################
 
 ################  Mount local folder ################
-# Windows
+# Windows cmd
 docker run -it --rm --name builder --volume %cd%:/home/project node:latest /bin/bash
 docker run -it --rm --name builder --volume %cd%:/home/project node:latest ls -la /home/project
+
+# Windows power shell
+docker run -it --rm --name builder --volume ${PWD}:/home/project node:latest /bin/bash
 
 # Linux via mount syntax
 docker run -it \
