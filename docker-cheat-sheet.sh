@@ -1,4 +1,18 @@
 #!/usr/bin/env bash
+
+
+#   Detach from alpine1 without stopping it by using the detach sequence,
+#   CTRL + p CTRL + q (hold down CTRL and type p followed by q).
+
+################  jump into container bash ################
+docker exec -t -i <container_name>  /bin/bash
+
+################  jump into container bash as root ################
+docker exec --user="root" -it <container_name> /bin/bash
+docker attach <container_name>
+
+
+
 ################  follow log ################
 sudo docker logs -f <container_name or ID>
 
@@ -59,12 +73,6 @@ docker load -i myfile.tar
 git clone https://github.com/dockerinaction/ch3_dockerfile.git
 docker build -t dia_ch3/dockerfile:latest ch3_dockerfile
 
-################  jump into container bash ################
-docker exec -t -i <container_name>  /bin/bash
-
-################  jump into container bash as root ################
-docker exec --user="root" -it <container_name> /bin/bash
-docker attach <container_name>
 
 
 
@@ -89,15 +97,3 @@ docker run -h <openam.example.com> -p 8081:8080 --name <container_name>
 
 ################################################################################################################################
 
-################  Mount local folder ################
-# Windows
-docker run -it --rm --name builder --volume %cd%:/home/project node:latest /bin/bash
-docker run -it --rm --name builder --volume %cd%:/home/project node:latest ls -la /home/project
-
-# Linux via mount syntax
-docker run -it \
-  --rm \
-  --name builder \
-  --mount type=bind,source="$(pwd)"/,target=/home/project \
-    node:latest \
-    ls -la /home/project
