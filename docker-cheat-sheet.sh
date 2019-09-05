@@ -1,4 +1,18 @@
 #!/usr/bin/env bash
+
+
+#   Detach from alpine1 without stopping it by using the detach sequence,
+#   CTRL + p CTRL + q (hold down CTRL and type p followed by q).
+
+################  jump into container bash ################
+docker exec -t -i <container_name>  /bin/bash
+
+################  jump into container bash as root ################
+docker exec --user="root" -it <container_name> /bin/bash
+docker attach <container_name>
+
+
+
 ################  follow log ################
 sudo docker logs -f <container_name or ID>
 
