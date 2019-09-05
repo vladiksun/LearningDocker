@@ -34,10 +34,6 @@ docker rmi \
   dockerinaction/ch3_myotherapp \
   java:6
 
-
-################ check if container is running using metadata ################
-docker inspect --format "{{.State.Running}}" <container_name>
-
 ################ search docker images in default repository ################
 docker search <search_pattern>
 
@@ -83,8 +79,6 @@ docker commit test01 test02
 # re-run from the commited image
 docker run -p 8081:8080 -td test02
 
-docker run -h <openam.example.com> -p 8081:8080 --name <container_name>
-
 # Where the first 8081 is the local port and the second 8080 is the container port.
 
 ################################################################################################################################
@@ -104,3 +98,15 @@ docker run -it \
   --mount type=bind,source="$(pwd)"/,target=/home/project \
     node:latest \
     ls -la /home/project
+
+################################################################################################################################
+# check if container is running using metadata
+docker inspect --format "{{.State.Running}}" <container_name>
+
+# Get an instance’s IP address
+docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' openam
+
+# List all port bindings
+docker inspect --format='{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(index $conf 0).HostPort}} {{end}}' openam
+
+docker inspect --format "{{.Mounts}}" openam_local_config
