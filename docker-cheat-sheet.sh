@@ -124,3 +124,6 @@ docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}
 docker inspect --format='{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(index $conf 0).HostPort}} {{end}}' openam
 
 docker inspect --format "{{.Mounts}}" openam_local_config
+
+
+docker stats my-nginx

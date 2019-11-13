@@ -19,6 +19,8 @@ docker start openam
 docker exec -t -i openam  /bin/bash
 docker exec --user="root" -it openam /bin/bash
 
+docker exec --user="root" -it 3f9f292c85a2 /bin/bash
+
 # Copy a file from Docker container to host:
 docker cp openam:/usr/openam/config C:\Users\vladislav.bondarchuk\Downloads\DockerMounts\OpenAM\config
 
