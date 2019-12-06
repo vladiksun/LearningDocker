@@ -28,9 +28,27 @@ printf "\n"
 printf "\n"
 printf "Dashboard Login token is :   \n$TOKEN"
 
-# Command to find if the port 8001 is occupaid already
-#netstat -atno | grep -w '8001' | awk '{print $5}'
-#netstat -atno | findstr :8001
+pingDashboard() {
+  STATUS=0
+  printf "%s" "Waiting for $DASHBOARD_URL ..."
+  printf "\n"
+  while ! [ $STATUS == 200 ]
+  do
+      printf "%c" "."
+      STATUS=$(curl -s -o /dev/null -w "%{http_code}\n" $DASHBOARD_URL)
+      if [ $STATUS == 200 ] ; then
+          printf "\n"
+          echo "$DASHBOARD_URL is up, returned $STATUS"
+          echo "Dashboard is available"
+          start $DASHBOARD_URL
+      else
+          printf "%c" "."
+      fi
+  done
+}
+
+# spawn background process to ping if dashboard is available
+pingDashboard &
 
 # start proxy to make dashboard available on
 # http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login

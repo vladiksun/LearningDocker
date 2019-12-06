@@ -17,7 +17,9 @@ kubectl apply -f deployment-script.yaml
 
 kubectl get pod
 
-kubectl get pods
+kubectl get pods -o wide
+
+kubectl describe pod pod_name
 
 kubectl api-resources
 
