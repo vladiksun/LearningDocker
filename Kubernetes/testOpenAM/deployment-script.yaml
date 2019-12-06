@@ -1,0 +1,28 @@
+kind: Deployment
+apiVersion: apps/v1
+
+metadata:
+  name: openam
+  namespace: default
+  labels:
+    app: openam-app
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openam-app
+  template:
+    metadata:
+      labels:
+        app: openam-app
+    spec:
+      containers:
+        - name: openam-app-container
+          image: openidentityplatform/openam
+          resources: {}
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+
+
