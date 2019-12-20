@@ -4,6 +4,10 @@ CLUSTER_ALIAS='testKindCluster'
 DASHBOARD_URL='http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login'
 
 kind delete cluster --name $CLUSTER_ALIAS
+
+command -v kubectl >/dev/null 2>&1 || { echo >&2 "Kubectl is not installed.  Aborting."; exit 1; }
+command -v kind >/dev/null 2>&1 || { echo >&2 "Kind is not installed.  Aborting."; exit 1; }
+
 kind create cluster --name $CLUSTER_ALIAS --config kind-example-config.yaml --loglevel debug --wait 5m
 # Install dashboard
 
@@ -48,7 +52,7 @@ pingDashboard() {
 }
 
 # spawn background process to ping if dashboard is available
-pingDashboard &
+#pingDashboard &
 
 # start proxy to make dashboard available on
 # http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login
