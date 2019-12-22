@@ -27,4 +27,21 @@ kubectl delete pods --all
 
 kubectl get services
 
+kubectl create -f kubia-manual.yaml
+
+kubectl get po kubia-manual -o yaml
+
+kubectl logs kubia-manual
+
+kubectl logs kubia-manual -c kubia
+
+kubectl port-forward kubia-manual 8888:8080
+
+kubectl delete po -l creation_method=manual
+
+kubectl delete ns custom-namespace
+
+kubectl delete po --all
+
+kubectl delete all --all
 

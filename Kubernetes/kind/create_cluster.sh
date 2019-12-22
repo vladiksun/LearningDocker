@@ -5,6 +5,7 @@ DASHBOARD_URL='http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/serv
 
 kind delete cluster --name $CLUSTER_ALIAS
 
+# Ubuntu specific
 command -v kubectl >/dev/null 2>&1 || { echo >&2 "Kubectl is not installed.  Aborting."; exit 1; }
 command -v kind >/dev/null 2>&1 || { echo >&2 "Kind is not installed.  Aborting."; exit 1; }
 
@@ -44,7 +45,10 @@ pingDashboard() {
           printf "\n"
           echo "$DASHBOARD_URL is up, returned $STATUS"
           echo "Dashboard is available"
-          start $DASHBOARD_URL
+
+          # Ubuntu specific
+          xdg-open $DASHBOARD_URL
+          #start $DASHBOARD_URL
       else
           printf "%c" "."
       fi
