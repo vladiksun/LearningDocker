@@ -33,22 +33,52 @@ printf "\n"
 printf "\n"
 printf "Dashboard Login token is :   \n$TOKEN"
 
+getOS() {
+  unameOut="$(uname -s)"
+  case "${unameOut}" in
+      Linux*)     machine=Linux;;
+      Darwin*)    machine=Mac;;
+      CYGWIN*)    machine=Cygwin;;
+      MINGW*)     machine=MinGw;;
+      *)          machine="UNKNOWN:${unameOut}"
+  esac
+}
+
+openDashboard() {
+  getOS
+
+  if [ "$machine" == "Linux" ]
+  then
+     xdg-open $DASHBOARD_URL
+  elif [ "$machine" == "Cygwin" ]
+  then
+     cygstart $DASHBOARD_URL
+  elif [ "$machine" == "MinGw" ]
+  then
+     start $DASHBOARD_URL
+  fi
+}
+
 pingDashboard() {
   STATUS=0
   printf "%s" "Waiting for $DASHBOARD_URL ..."
   printf "\n"
+  printf "\n"
   while ! [ $STATUS == 200 ]
   do
       printf "%c" "."
-      STATUS=$(curl -s -o /dev/null -w "%{http_code}\n" $DASHBOARD_URL)
-      if [ $STATUS == 200 ] ; then
+      CURL_STATUS=$(curl -s -o /dev/null -w "%{http_code}\n" $DASHBOARD_URL)
+
+      # get rid off carriage return
+      STATUS=${CURL_STATUS//$'\r'}
+
+      if [ $STATUS == 200 ]
+      then
           printf "\n"
           echo "$DASHBOARD_URL is up, returned $STATUS"
           echo "Dashboard is available"
 
-          # Ubuntu specific
-          xdg-open $DASHBOARD_URL
-          #start $DASHBOARD_URL
+          openDashboard
       else
           printf "%c" "."
       fi
@@ -56,7 +86,7 @@ pingDashboard() {
 }
 
 # spawn background process to ping if dashboard is available
-#pingDashboard &
+pingDashboard &
 
 # start proxy to make dashboard available on
 # http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login
