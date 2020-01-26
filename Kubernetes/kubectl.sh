@@ -16,32 +16,43 @@ kubectl describe node testkindcluster-worker3
 kubectl apply -f deployment-script.yaml
 
 kubectl get pod
-
 kubectl get pods -o wide
+kubectl get pods --show-labels
+kubectl get pods -L app
 
 kubectl describe pod pod_name
 
 kubectl api-resources
 
-kubectl delete pods --all
-
 kubectl get services
 
 kubectl create -f kubia-manual.yaml
-
 kubectl get po kubia-manual -o yaml
 
 kubectl logs kubia-manual
-
+# SPECIFYING THE CONTAINER NAME WHEN GETTING LOGS OF A MULTI-CONTAINER POD
 kubectl logs kubia-manual -c kubia
+kubectl logs mypod --previous
 
 kubectl port-forward kubia-manual 8888:8080
 
+kubectl delete pods --all
 kubectl delete po -l creation_method=manual
-
 kubectl delete ns custom-namespace
-
 kubectl delete po --all
-
 kubectl delete all --all
+kubectl delete rc kubia --cascade=false
+
+
+kubectl explain pods
+kubectl explain pod.spec
+
+kubectl replace --force -f kubia-liveness-probe-initial-delay.yaml
+
+kubectl label pod kubia-dmdck type=special
+kubectl label pod kubia-dmdck app=foo --overwrite
+
+kubectl exec -it kubia-3inly bash
+
+
 

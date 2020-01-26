@@ -7,15 +7,17 @@ nodes:
 #  - role: control-plane
   - role: worker
     extraPortMappings:
+      - containerPort: 30001
+        hostPort: 30001
       - containerPort: 8090
         hostPort: 8090
   - role: worker
     extraPortMappings:
-      - containerPort: 8091
-        hostPort: 8091
+      - containerPort: 30002
+        hostPort: 30002
   - role: worker
     extraPortMappings:
-      - containerPort: 8093
-        hostPort: 8093
+      - containerPort: 30003
+        hostPort: 30003
 #        listenAddress: "0.0.0.0" # Optional, defaults to "0.0.0.0"
 #        protocol: udp # Optional, defaults to tcp
