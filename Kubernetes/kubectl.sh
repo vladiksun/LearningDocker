@@ -19,6 +19,8 @@ kubectl get pod
 kubectl get pods -o wide
 kubectl get pods --show-labels
 kubectl get pods -L app
+kubectl get po --all-namespaces
+kubectl get ingresses
 
 kubectl describe pod pod_name
 
