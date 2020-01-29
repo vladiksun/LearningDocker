@@ -29,29 +29,3 @@ spec:
   ports:
   # Default port used by the image
   - port: 5678
-
----
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
-  name: example-ingress
-  annotations:
-    ingress.kubernetes.io/rewrite-target: /
-spec:
-  tls:
-    - hosts:
-      - localhost
-      secretName: tls-secret
-  rules:
-  - host: localhost  # for a particular host name to work we need probably to edit hosts file
-    http:
-      paths:
-      - path: /foo
-        backend:
-          serviceName: foo-service
-          servicePort: 5678
-      - path: /bar # not existing service
-        backend:
-          serviceName: bar-service
-          servicePort: 5678
----
