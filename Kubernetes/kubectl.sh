@@ -56,5 +56,7 @@ kubectl label pod kubia-dmdck app=foo --overwrite
 
 kubectl exec -it kubia-3inly bash
 
+docker exec --user="root" -it testKindCluster-worker /bin/bash
+
 
 

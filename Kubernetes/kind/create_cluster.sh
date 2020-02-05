@@ -1,3 +1,7 @@
+#!/bin/bash
+#set -e # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+# Any subsequent(*) commands which fail will cause the shell script to exit immediately
+
 #   https://kind.sigs.k8s.io/docs/user/quick-start/
 HTTP_PART='http://'
 CLUSTER_ALIAS='testKindCluster'

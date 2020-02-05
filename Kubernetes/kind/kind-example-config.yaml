@@ -1,6 +1,15 @@
 # a cluster with 3 control-plane nodes and 3 workers
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
+networking:
+  # WARNING: It is _strongly_ recommended that you keep this the default
+  # (127.0.0.1) for security reasons. However it is possible to change this.
+  apiServerAddress: "127.0.0.1"
+  # By default the API server listens on a random open port.
+  # You may choose a specific port but probably don't need to in most cases.
+  # Using a random port makes it easier to spin up multiple clusters.
+
+#  apiServerPort: 8001
 nodes:
   #  - role: control-plane
   #  - role: control-plane
@@ -23,17 +32,20 @@ nodes:
 
   - role: worker
     extraPortMappings:
-      - containerPort: 30001 # this port can be used as a NodePort to expose a service
+      - containerPort: 30000 # this port can be used as a NodePort to expose a service
         hostPort: 30001
       - containerPort: 8090
         hostPort: 8090
+#    extraMounts:
+#      - hostPath: /path/to/my/files/
+#        containerPath: /files
   - role: worker
     extraPortMappings:
-      - containerPort: 30002
+      - containerPort: 30000
         hostPort: 30002
   - role: worker
     extraPortMappings:
-      - containerPort: 30003
+      - containerPort: 30000
         hostPort: 30003
 #        listenAddress: "0.0.0.0" # Optional, defaults to "0.0.0.0"
 #        protocol: udp # Optional, defaults to tcp
