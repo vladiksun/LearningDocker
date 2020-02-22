@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: openam-pv
+spec:
+  storageClassName: openmam
+  capacity:
+    storage: 3Gi
+  accessModes:
+#    - ReadWriteOnce # The Volume can be mounted as read-write by a single node.
+#    - ReadOnlyMany  # The Volume can be mounted read-only by many nodes.
+    - ReadWriteMany # The Volume can be mounted as read-write by many nodes. PersistentVolumes that are backed by Compute Engine persistent disks don't support this access mode.
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /DockerMounts/OpenAM/config

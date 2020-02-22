@@ -1,0 +1,106 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: dashboard-proxy
+  name: dashboard-proxy
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dashboard-proxy
+  template:
+    metadata:
+      labels:
+        app: dashboard-proxy
+    spec:
+      containers:
+        - args:
+            - --cookie-secure=false
+            - --provider=github
+            - --upstream=http://kubernetes-dashboard.kube-system.svc.cluster.local
+            - --http-address=0.0.0.0:8080
+            - --redirect-url=https://k8s.i.example.com/oauth2/callback
+            - --email-domain=*
+            - --github-org=YOUR-ORG
+            - --pass-basic-auth=false
+            - --pass-access-token=false
+          env:
+            - name: OAUTH2_PROXY_COOKIE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: cookie
+                  name: dashboard-proxy-secret
+            - name: OAUTH2_PROXY_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  key: client-id
+                  name: dashboard-proxy-secret
+            - name: OAUTH2_PROXY_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: client-secret
+                  name: dashboard-proxy-secret
+          image: a5huynh/oauth2_proxy:2.2
+          name: oauth-proxy
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: dashboard-proxy
+  name: dashboard-proxy
+  namespace: kube-system
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: dashboard-proxy
+  type: ClusterIP
+---
+apiVersion: certmanager.k8s.io/v1beta1
+kind: Certificate
+metadata:
+  name: dashboard-proxy-tls
+  namespace: kube-system
+spec:
+  secretName: dashboard-proxy-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName:  k8s.i.example.com
+  dnsNames:
+    -  k8s.i.example.com
+  acme:
+    config:
+      - http01: {}
+        domains:
+          -  k8s.i.example.com
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: dashboard-proxy
+  namespace: kube-system
+  annotations:
+    kubernetes.io/ingress.class: contour
+spec:
+  rules:
+    - host: k8s.i.example.com
+      http:
+        paths:
+          - backend:
+              serviceName: dashboard-proxy
+              servicePort: 8080
+            path: /
+  tls:
+    - hosts:
+        - k8s.i.example.com
+      secretName: dashboard-proxy-tls

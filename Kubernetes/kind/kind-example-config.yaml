@@ -34,18 +34,28 @@ nodes:
     extraPortMappings:
       - containerPort: 30000 # this port can be used as a NodePort to expose a service
         hostPort: 30001
-      - containerPort: 8090
-        hostPort: 8090
-#    extraMounts:
-#      - hostPath: /path/to/my/files/
-#        containerPath: /files
+      - containerPort: 8080
+        hostPort: 9001
+    extraMounts:
+      - hostPath: C:\Users\vladislav.bondarchuk\Downloads\DockerMounts
+        containerPath: /DockerMounts
   - role: worker
     extraPortMappings:
       - containerPort: 30000
         hostPort: 30002
+      - containerPort: 8080
+        hostPort: 9002
+    extraMounts:
+      - hostPath: C:\Users\vladislav.bondarchuk\Downloads\DockerMounts
+        containerPath: /DockerMounts
   - role: worker
     extraPortMappings:
       - containerPort: 30000
         hostPort: 30003
+      - containerPort: 8080
+        hostPort: 9003
+    extraMounts:
+      - hostPath: C:\Users\vladislav.bondarchuk\Downloads\DockerMounts
+        containerPath: /DockerMounts
 #        listenAddress: "0.0.0.0" # Optional, defaults to "0.0.0.0"
 #        protocol: udp # Optional, defaults to tcp

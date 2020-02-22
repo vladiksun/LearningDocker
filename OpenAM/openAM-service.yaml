@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: openam-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openam-app
+  template:
+    metadata:
+      labels:
+        app: openam-app
+    spec:
+      containers:
+        - image: openidentityplatform/openam
+          name: openam
+          volumeMounts:
+            - name: openam-volume
+              mountPath: /usr/openam/config
+          ports:
+            - containerPort: 8080
+      volumes:
+        - name: openam-volume
+          persistentVolumeClaim:
+            claimName: openampvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: openam-service
+spec:
+  selector:
+    app: openam-app
+  ports:
+  - port: 8080

@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /openam/$2
+spec:
+  rules:
+  - host: openam.example.com  # for a particular host name to work we need probably to edit hosts file
+    http:
+      paths:
+        - path: /openam(/|$)(.*)
+          backend:
+            serviceName: openam-service
+            servicePort: 8080
+---

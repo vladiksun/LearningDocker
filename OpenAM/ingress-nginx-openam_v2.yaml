@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+spec:
+  rules:
+  - host: openam.example.com
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: openam-service
+            servicePort: 8080
+---
