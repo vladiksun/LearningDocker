@@ -1,0 +1,1 @@
+https://github.com/kubernetes/ingress-nginx/tree/master/docs/examples/auth/oauth-external-auth
