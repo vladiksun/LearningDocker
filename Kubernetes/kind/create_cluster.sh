@@ -38,7 +38,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/ngin
 # Apply kind specific patches to forward the hostPorts to the ingress controller, set taint tolerations and schedule it to the custom labelled node.
 kubectl patch deployments -n ingress-nginx nginx-ingress-controller -p '{"spec":{"template":{"spec":{"containers":[{"name":"nginx-ingress-controller","ports":[{"containerPort":80,"hostPort":80},{"containerPort":443,"hostPort":443}]}],"nodeSelector":{"ingress-ready":"true"},"tolerations":[{"key":"node-role.kubernetes.io/master","operator":"Equal","effect":"NoSchedule"}]}}}}'
 # Create TLS secret to support https
-# kubectl create secret tls tls-secret --cert=tls.cert --key=tls.key
+kubectl create secret tls tls-secret --cert=tls.cert --key=tls.key
 
 # Apply test services to test ingress works
 # https://kind.sigs.k8s.io/docs/user/ingress/
