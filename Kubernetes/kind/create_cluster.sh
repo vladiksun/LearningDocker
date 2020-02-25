@@ -2,15 +2,10 @@
 #set -e # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
 # Any subsequent(*) commands which fail will cause the shell script to exit immediately
 
-#   https://kind.sigs.k8s.io/docs/user/quick-start/
-HTTP_PART='http://'
-CLUSTER_ALIAS='testKindCluster'
+find ./ -name "*.sh" -exec chmod +x {} \;
 
-KUBERNETES_DASHBOARD_URL='localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login'
-K8DASH_DASHBOARD_URL='k8dash.example.com'
-
-DASHBOARD_URL=$KUBERNETES_DASHBOARD_URL
-INGRESS_TEST_MARKER='foo'
+# export user defined variables
+source ./vars.sh
 
 # Ubuntu specific
 command -v kubectl >/dev/null 2>&1 || {
@@ -23,12 +18,15 @@ command -v kind >/dev/null 2>&1 || {
 }
 
 deleteCluster() {
-  kind delete cluster --name $CLUSTER_ALIAS
+  kind delete cluster --name "$CLUSTER_ALIAS"
 }
 
 deleteCluster
 
-kind create cluster --name $CLUSTER_ALIAS --config kind-example-config.yaml --loglevel debug --wait 5m
+
+#create config from template
+eval "echo \"$(cat "${TEMPLATE_CONFIG_FILE}")\"" > "${CONFIG_FILE}"
+kind create cluster --name "$CLUSTER_ALIAS" --config "${CONFIG_FILE}" --loglevel debug --wait 5m
 
 # Install Ingress NGINX
 # Apply the mandatory ingress-nginx components
