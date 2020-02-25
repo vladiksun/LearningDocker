@@ -16,23 +16,3 @@ spec:
               servicePort: 80
             path: /
 
----
-
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
-  name: oauth2-proxy
-  namespace: kube-system
-spec:
-  rules:
-    - host: k8s.i.example.com
-      http:
-        paths:
-          - backend:
-              serviceName: oauth2-proxy
-              servicePort: 4180
-            path: /oauth2
-  tls:
-    - hosts:
-        - k8s.i.example.com
-      secretName: tls-secret
