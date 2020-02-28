@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: openam-local-pv
+spec:
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteOnce
+#  persistentVolumeReclaimPolicy: Retain
+#  storageClassName: local-storage
+  local:
+    path: /DockerMounts/openam
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - testKindCluster-worker
+                - testKindCluster-worker2
+                - testKindCluster-worker3

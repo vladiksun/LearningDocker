@@ -16,6 +16,10 @@ command -v kind >/dev/null 2>&1 || {
   echo >&2 "Kind is not installed.  Aborting."
   exit 1
 }
+command -v helm >/dev/null 2>&1 || {
+  echo >&2 "Helm is not installed.  Aborting. Please refere to https://helm.sh/docs/intro/install/"
+  exit 1
+}
 
 deleteCluster() {
   kind delete cluster --name "$CLUSTER_ALIAS"
@@ -26,7 +30,9 @@ deleteCluster
 
 #create config from template
 eval "echo \"$(cat "${TEMPLATE_CONFIG_FILE}")\"" > "${CONFIG_FILE}"
-kind create cluster --name "$CLUSTER_ALIAS" --config "${CONFIG_FILE}" --loglevel debug --wait 5m
+
+#kind create cluster --name "$CLUSTER_ALIAS" --config "${CONFIG_FILE}" --kubeconfig "$KUBECONFIG" --verbosity 5 --wait 5m
+kind create cluster --name "$CLUSTER_ALIAS" --config "${CONFIG_FILE}" --wait 5m --verbosity 5
 
 # Install Ingress NGINX
 # Apply the mandatory ingress-nginx components
@@ -43,11 +49,36 @@ kubectl create secret tls tls-secret --cert=tls.cert --key=tls.key
 kubectl apply -f ingress-test-services.yaml
 kubectl apply -f ingress-nginx.yaml
 
+# Installing and Configuring Cert-Manager
+# In this step, we’ll install cert-manager into our cluster. cert-manager is a Kubernetes service that provisions TLS certificates
+# from Let’s Encrypt and other certificate authorities and manages their lifecycles. Certificates can be requested and configured by annotating
+# Ingress Resources with the cert-manager.io/issuer annotation, appending a tls section to the Ingress spec,
+# and configuring one or more Issuers or ClusterIssuers to specify your preferred certificate authority
+kubectl create namespace cert-manager
+kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.13.1/cert-manager.yaml
+kubectl create -f ./oauth2-proxy/staging_issuer.yaml
+kubectl describe certificate
+kubectl create -f ./oauth2-proxy/prod_issuer.yaml
+
+kubectl -n default create secret generic oauth2-proxy-creds \
+--from-literal=cookie-secret="$OAUTH2_PROXY_COOKIE_SECRET" \
+--from-literal=client-id="$OAUTH2_PROXY_CLIENT_ID" \
+--from-literal=client-secret="$OAUTH2_PROXY_CLIENT_SECRET"
+
+helm repo add stable https://kubernetes-charts.storage.googleapis.com
+
+helm repo update \
+&& helm upgrade oauth2-proxy --install stable/oauth2-proxy \
+--reuse-values \
+--values ./oauth2-proxy/oauth2-proxy-values.yaml
+kubectl apply -f ./oauth2-proxy/oauth2-proxy-ingress.yaml
+
+
 # Install dashboard
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta6/aio/deploy/recommended.yaml
 # kubectl apply -f kubernetes-dashboard-bypass-login-v2.0.0-beta6.yaml
-kubectl apply -f dashboard-adminuser.yaml
-kubectl apply -f dashboard-adminuser-role-binding.yaml
+kubectl apply -f ./dashboard/dashboard-adminuser.yaml
+kubectl apply -f ./dashboard/dashboard-adminuser-role-binding.yaml
 
 if [ -n "$K8DASH_DASHBOARD_URL" ]; then
   # Install dashboard K8Dash
@@ -62,7 +93,7 @@ fi
 checkIngressWorks() {
   SERVICE_VIA_INGRESS_STATUS=$(curl s -o /dev/null --connect-timeout 3 --max-time 5 localhost/$INGRESS_TEST_MARKER)
 
-  if [ $SERVICE_VIA_INGRESS_STATUS == $INGRESS_TEST_MARKER ]; then
+  if [ "$SERVICE_VIA_INGRESS_STATUS" == "$INGRESS_TEST_MARKER" ]; then
     printf "\n"
     echo "Ingress is active and OK"
     printf "\n"
@@ -105,11 +136,11 @@ openDashboard() {
   local full_url="$HTTP_PART$DASHBOARD_URL"
 
   if [ "$machine" == "Linux" ]; then
-    xdg-open $full_url
+    xdg-open "$full_url"
   elif [ "$machine" == "Cygwin" ]; then
-    cygstart $full_url
+    cygstart "$full_url"
   elif [ "$machine" == "MinGw" ]; then
-    start $full_url
+    start "$full_url"
   fi
 }
 
@@ -119,7 +150,7 @@ printDashboardToken() {
   # get token
   CLUSTER_SECRET=$(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
 
-  TOKEN=$(kubectl -n kubernetes-dashboard describe secret $CLUSTER_SECRET | grep 'token:' | awk '{print $2}')
+  TOKEN=$(kubectl -n kubernetes-dashboard describe secret "$CLUSTER_SECRET" | grep 'token:' | awk '{print $2}')
 
   printf "\n"
   printf "\n"

@@ -8,5 +8,6 @@ spec:
     requests:
       storage: 3Gi
   accessModes:
-    - ReadWriteMany
-  storageClassName: openam
+    - ReadWriteOnce
+#    - ReadWriteMany
+  storageClassName: local-storage

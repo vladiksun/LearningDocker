@@ -54,6 +54,8 @@ kubectl replace --force -f kubia-liveness-probe-initial-delay.yaml
 kubectl label pod kubia-dmdck type=special
 kubectl label pod kubia-dmdck app=foo --overwrite
 
+kubectl config view
+
 kubectl exec -it kubia-3inly bash
 
 docker exec --user="root" -it testKindCluster-worker /bin/bash
