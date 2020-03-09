@@ -1,0 +1,3207 @@
+{
+  "_id": "7a7df1a1839da8694feffce805200bd9",
+  "_rev": "95-167fb4f4f2499a3187e85522137f6a72",
+  "designDocId": "_design/Worklist_default",
+  "domainObjectClass": "Worklist",
+  "layer": "DEFAULT",
+  "subnodes": {
+    "@type": "nodes",
+    "nodes": [
+      {
+        "@type": "node",
+        "docType": "IV",
+        "nodeName": "$Worklist.allIV$",
+        "listDisplayView": "indexIV",
+        "counted": false,
+        "queryPrefetching": false,
+        "expand": false,
+        "nodeId": "allIV",
+        "selectionScreen": {
+          "dataModelMapping": {
+            "@type": "javascript",
+            "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-DATE#1').toStart('DOC_DATE'); fields.map('SELSCR-DATE#2').toEnd('DOC_DATE'); fields.map('SELSCR-STATUS').to('GC_IV_ExternalStatus'); fields.map('SELSCR-VENDOR').to('VENDOR_NO');fields.map('SELSCR-COMP_CODE').to('COMP_CODE'); fields.map('SELSCR-DOCNO').to('DOCNO'); fields.map('SELSCR-REFDOCNO').to('REF_DOC_NO'); fields.map('SELSCR-PO_NUMBER').to('PO_NUMBER'); fields.map('SELSCR-CURRENCY').to('CURRENCY'); fields.map('SELSCR-GROSS#1').toStart('GROSS_AMOUNT'); fields.map('SELSCR-GROSS#2').toEnd('GROSS_AMOUNT'); fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+          },
+          "viewName": "IVselectionView",
+          "id": "IVselection",
+          "presetData": {
+            "@type": "selection",
+            "selection": {
+              "SELSCR-MAX_NUMBER#1": {
+                "@type": "value",
+                "value": "500"
+              },
+              "SELSCR-STATUS": {
+                "@type": "value",
+                "value": ""
+              },
+              "SELSCR-VENDOR": {
+                "@type": "value",
+                "value": ""
+              },
+              "SELSCR-COMP_CODE": {
+                "@type": "value",
+                "value": ""
+              },
+              "SELSCR-DOCNO": {
+                "@type": "value",
+                "value": ""
+              },
+              "SELSCR-REFDOCNO": {
+                "@type": "value",
+                "value": ""
+              },
+              "SELSCR-DATE#1": {
+                "@type": "value",
+                "value": ""
+              },
+              "SELSCR-DATE#2": {
+                "@type": "value",
+                "value": ""
+              },
+              "SELSCR-PO_NUMBER": {
+                "@type": "value",
+                "value": ""
+              },
+              "SELSCR-GROSS#1": {
+                "@type": "value",
+                "value": ""
+              },
+              "SELSCR-GROSS#2": {
+                "@type": "value",
+                "value": ""
+              },
+              "SELSCR-CURRENCY": {
+                "@type": "value",
+                "value": ""
+              }
+            },
+            "maxHits": 0
+          }
+        },
+        "subnodes": {
+          "@type": "nodes",
+          "nodes": [
+            {
+              "@type": "node",
+              "docType": "IV",
+              "nodeName": "$GC_IV_ExternalStatus.B01$",
+              "listDisplayView": "indexIV",
+              "counted": false,
+              "queryPrefetching": false,
+              "nodeId": "stateB01",
+              "hideNode": {
+                "@type": "javascript",
+                "javascript": "function(context,parameter){var mode=context.getContextSetting('invoicecreation.mode');if('0'==mode){return AbstractValue.value('MANDATORY');}else{return AbstractValue.value('NO');};}"
+              },
+              "selection": {
+                "@type": "selection",
+                "selection": {
+                  "GC_IV_ExternalStatus": {
+                    "@type": "value",
+                    "value": "B01"
+                  }
+                },
+                "maxHits": 0
+              },
+              "selectionScreen": {
+                "dataModelMapping": {
+                  "@type": "javascript",
+                  "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-DATE#1').toStart('DOC_DATE'); fields.map('SELSCR-DATE#2').toEnd('DOC_DATE'); fields.map('SELSCR-VENDOR').to('VENDOR_NO');fields.map('SELSCR-COMP_CODE').to('COMP_CODE'); fields.map('SELSCR-REFDOCNO').to('REF_DOC_NO'); fields.map('SELSCR-PO_NUMBER').to('PO_NUMBER'); fields.map('SELSCR-CURRENCY').to('CURRENCY'); fields.map('SELSCR-GROSS#1').toStart('GROSS_AMOUNT'); fields.map('SELSCR-GROSS#2').toEnd('GROSS_AMOUNT'); fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                },
+                "viewName": "IVselectionView",
+                "id": "IVselection",
+                "presetData": {
+                  "@type": "selection",
+                  "selection": {
+                    "SELSCR-MAX_NUMBER#1": {
+                      "@type": "value",
+                      "value": "500"
+                    },
+                    "SELSCR-VENDOR": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-COMP_CODE": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-REFDOCNO": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-DATE#1": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-DATE#2": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-PO_NUMBER": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-GROSS#1": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-GROSS#2": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-CURRENCY": {
+                      "@type": "value",
+                      "value": ""
+                    }
+                  },
+                  "maxHits": 0
+                }
+              },
+              "action": [
+                {
+                  "id": "SWWLN0&CREAT0",
+                  "name": "$GUI_button.SWWLN0_CREAT0$",
+                  "description": "$GUI_button.SWWLN0_CREAT0_TT$",
+                  "state": 0,
+                  "icon": "page-new.png",
+                  "selected": false
+                },
+                {
+                  "id": "SWWLN0&CREAT0_CN",
+                  "name": "$GUI_button.SWWLN0_CREAT0_CN$",
+                  "description": "$GUI_button.SWWLN0_CREAT0_CN_TT$",
+                  "state": 0,
+                  "icon": "page-new.png",
+                  "selected": false
+                }
+              ]
+            },
+            {
+              "@type": "node",
+              "docType": "IV",
+              "nodeName": "$GC_IV_ExternalStatus.B02$",
+              "listDisplayView": "indexIV",
+              "counted": false,
+              "queryPrefetching": false,
+              "nodeId": "stateB02",
+              "hideNode": {
+                "@type": "javascript",
+                "javascript": "function(context,parameter){var mode=context.getContextSetting('invoicecreation.mode');if('0'==mode){return AbstractValue.value('MANDATORY');}else{return AbstractValue.value('NO');};}"
+              },
+              "selection": {
+                "@type": "selection",
+                "selection": {
+                  "GC_IV_ExternalStatus": {
+                    "@type": "value",
+                    "value": "B02"
+                  }
+                },
+                "maxHits": 0
+              },
+              "selectionScreen": {
+                "dataModelMapping": {
+                  "@type": "javascript",
+                  "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-DATE#1').toStart('DOC_DATE'); fields.map('SELSCR-DATE#2').toEnd('DOC_DATE'); fields.map('SELSCR-VENDOR').to('VENDOR_NO');fields.map('SELSCR-COMP_CODE').to('COMP_CODE'); fields.map('SELSCR-REFDOCNO').to('REF_DOC_NO'); fields.map('SELSCR-PO_NUMBER').to('PO_NUMBER'); fields.map('SELSCR-CURRENCY').to('CURRENCY'); fields.map('SELSCR-GROSS#1').toStart('GROSS_AMOUNT'); fields.map('SELSCR-GROSS#2').toEnd('GROSS_AMOUNT'); fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                },
+                "viewName": "IVselectionView",
+                "id": "IVselection",
+                "presetData": {
+                  "@type": "selection",
+                  "selection": {
+                    "SELSCR-MAX_NUMBER#1": {
+                      "@type": "value",
+                      "value": "500"
+                    },
+                    "SELSCR-VENDOR": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-COMP_CODE": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-REFDOCNO": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-DATE#1": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-DATE#2": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-PO_NUMBER": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-GROSS#1": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-GROSS#2": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-CURRENCY": {
+                      "@type": "value",
+                      "value": ""
+                    }
+                  },
+                  "maxHits": 0
+                }
+              }
+            },
+            {
+              "@type": "node",
+              "docType": "IV",
+              "nodeName": "$GC_IV_ExternalStatus.B12$",
+              "listDisplayView": "indexIV",
+              "counted": false,
+              "queryPrefetching": false,
+              "nodeId": "stateB12",
+              "hideNode": {
+                "@type": "javascript",
+                "javascript": "function(context,parameter){var mode=context.getContextSetting('invoicecreation.mode');if('0'==mode){return AbstractValue.value('MANDATORY');}else{return AbstractValue.value('NO');};}"
+              },
+              "selection": {
+                "@type": "selection",
+                "selection": {
+                  "GC_IV_ExternalStatus": {
+                    "@type": "values",
+                    "values": [
+                      "B16",
+                      "B17",
+                      "B18",
+                      "B19"
+                    ]
+                  }
+                },
+                "maxHits": 0
+              },
+              "selectionScreen": {
+                "dataModelMapping": {
+                  "@type": "javascript",
+                  "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-DATE#1').toStart('DOC_DATE'); fields.map('SELSCR-DATE#2').toEnd('DOC_DATE'); fields.map('SELSCR-VENDOR').to('VENDOR_NO');fields.map('SELSCR-COMP_CODE').to('COMP_CODE'); fields.map('SELSCR-DOCNO').to('DOCNO'); fields.map('SELSCR-REFDOCNO').to('REF_DOC_NO'); fields.map('SELSCR-PO_NUMBER').to('PO_NUMBER'); fields.map('SELSCR-CURRENCY').to('CURRENCY'); fields.map('SELSCR-GROSS#1').toStart('GROSS_AMOUNT'); fields.map('SELSCR-GROSS#2').toEnd('GROSS_AMOUNT'); fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                },
+                "viewName": "IVselectionView",
+                "id": "IVselection",
+                "presetData": {
+                  "@type": "selection",
+                  "selection": {
+                    "SELSCR-MAX_NUMBER#1": {
+                      "@type": "value",
+                      "value": "500"
+                    },
+                    "SELSCR-VENDOR": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-COMP_CODE": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-DOCNO": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-REFDOCNO": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-DATE#1": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-DATE#2": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-PO_NUMBER": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-GROSS#1": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-GROSS#2": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-CURRENCY": {
+                      "@type": "value",
+                      "value": ""
+                    }
+                  },
+                  "maxHits": 0
+                }
+              },
+              "subnodes": {
+                "@type": "nodes",
+                "nodes": [
+                  {
+                    "@type": "node",
+                    "docType": "IV",
+                    "nodeName": "$GC_IV_ExternalStatus.B16$",
+                    "listDisplayView": "indexIV",
+                    "counted": false,
+                    "queryPrefetching": false,
+                    "nodeId": "stateB16",
+                    "selection": {
+                      "@type": "selection",
+                      "selection": {
+                        "GC_IV_ExternalStatus": {
+                          "@type": "values",
+                          "values": [
+                            "B16"
+                          ]
+                        }
+                      },
+                      "maxHits": 0
+                    },
+                    "selectionScreen": {
+                      "dataModelMapping": {
+                        "@type": "javascript",
+                        "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-DATE#1').toStart('DOC_DATE'); fields.map('SELSCR-DATE#2').toEnd('DOC_DATE'); fields.map('SELSCR-VENDOR').to('VENDOR_NO');fields.map('SELSCR-COMP_CODE').to('COMP_CODE'); fields.map('SELSCR-DOCNO').to('DOCNO'); fields.map('SELSCR-REFDOCNO').to('REF_DOC_NO'); fields.map('SELSCR-PO_NUMBER').to('PO_NUMBER'); fields.map('SELSCR-CURRENCY').to('CURRENCY'); fields.map('SELSCR-GROSS#1').toStart('GROSS_AMOUNT'); fields.map('SELSCR-GROSS#2').toEnd('GROSS_AMOUNT'); fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                      },
+                      "viewName": "IVselectionView",
+                      "id": "IVselection",
+                      "presetData": {
+                        "@type": "selection",
+                        "selection": {
+                          "SELSCR-MAX_NUMBER#1": {
+                            "@type": "value",
+                            "value": "500"
+                          },
+                          "SELSCR-VENDOR": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-COMP_CODE": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-DOCNO": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-REFDOCNO": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-DATE#1": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-DATE#2": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-PO_NUMBER": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-GROSS#1": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-GROSS#2": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-CURRENCY": {
+                            "@type": "value",
+                            "value": ""
+                          }
+                        },
+                        "maxHits": 0
+                      }
+                    }
+                  },
+                  {
+                    "@type": "node",
+                    "docType": "IV",
+                    "nodeName": "$GC_IV_ExternalStatus.B17$",
+                    "listDisplayView": "indexIV",
+                    "counted": false,
+                    "queryPrefetching": false,
+                    "nodeId": "stateB17",
+                    "selection": {
+                      "@type": "selection",
+                      "selection": {
+                        "GC_IV_ExternalStatus": {
+                          "@type": "value",
+                          "value": "B17"
+                        }
+                      },
+                      "maxHits": 0
+                    },
+                    "selectionScreen": {
+                      "dataModelMapping": {
+                        "@type": "javascript",
+                        "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-DATE#1').toStart('DOC_DATE'); fields.map('SELSCR-DATE#2').toEnd('DOC_DATE'); fields.map('SELSCR-VENDOR').to('VENDOR_NO');fields.map('SELSCR-COMP_CODE').to('COMP_CODE'); fields.map('SELSCR-DOCNO').to('DOCNO'); fields.map('SELSCR-REFDOCNO').to('REF_DOC_NO'); fields.map('SELSCR-PO_NUMBER').to('PO_NUMBER'); fields.map('SELSCR-CURRENCY').to('CURRENCY'); fields.map('SELSCR-GROSS#1').toStart('GROSS_AMOUNT'); fields.map('SELSCR-GROSS#2').toEnd('GROSS_AMOUNT'); fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                      },
+                      "viewName": "IVselectionView",
+                      "id": "IVselection",
+                      "presetData": {
+                        "@type": "selection",
+                        "selection": {
+                          "SELSCR-MAX_NUMBER#1": {
+                            "@type": "value",
+                            "value": "500"
+                          },
+                          "SELSCR-VENDOR": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-COMP_CODE": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-DOCNO": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-REFDOCNO": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-DATE#1": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-DATE#2": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-PO_NUMBER": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-GROSS#1": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-GROSS#2": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-CURRENCY": {
+                            "@type": "value",
+                            "value": ""
+                          }
+                        },
+                        "maxHits": 0
+                      }
+                    }
+                  },
+                  {
+                    "@type": "node",
+                    "docType": "IV",
+                    "nodeName": "$GC_IV_ExternalStatus.B18$",
+                    "listDisplayView": "indexIV",
+                    "counted": false,
+                    "queryPrefetching": false,
+                    "nodeId": "stateB18",
+                    "selection": {
+                      "@type": "selection",
+                      "selection": {
+                        "GC_IV_ExternalStatus": {
+                          "@type": "value",
+                          "value": "B18"
+                        }
+                      },
+                      "maxHits": 0
+                    },
+                    "selectionScreen": {
+                      "dataModelMapping": {
+                        "@type": "javascript",
+                        "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-DATE#1').toStart('DOC_DATE'); fields.map('SELSCR-DATE#2').toEnd('DOC_DATE'); fields.map('SELSCR-VENDOR').to('VENDOR_NO');fields.map('SELSCR-COMP_CODE').to('COMP_CODE'); fields.map('SELSCR-DOCNO').to('DOCNO'); fields.map('SELSCR-REFDOCNO').to('REF_DOC_NO'); fields.map('SELSCR-PO_NUMBER').to('PO_NUMBER'); fields.map('SELSCR-CURRENCY').to('CURRENCY'); fields.map('SELSCR-GROSS#1').toStart('GROSS_AMOUNT'); fields.map('SELSCR-GROSS#2').toEnd('GROSS_AMOUNT'); fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                      },
+                      "viewName": "IVselectionView",
+                      "id": "IVselection",
+                      "presetData": {
+                        "@type": "selection",
+                        "selection": {
+                          "SELSCR-MAX_NUMBER#1": {
+                            "@type": "value",
+                            "value": "500"
+                          },
+                          "SELSCR-VENDOR": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-COMP_CODE": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-DOCNO": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-REFDOCNO": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-DATE#1": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-DATE#2": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-PO_NUMBER": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-GROSS#1": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-GROSS#2": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-CURRENCY": {
+                            "@type": "value",
+                            "value": ""
+                          }
+                        },
+                        "maxHits": 0
+                      }
+                    }
+                  },
+                  {
+                    "@type": "node",
+                    "docType": "IV",
+                    "nodeName": "$GC_IV_ExternalStatus.B19$",
+                    "listDisplayView": "indexIV",
+                    "counted": false,
+                    "queryPrefetching": false,
+                    "nodeId": "stateB19",
+                    "selection": {
+                      "@type": "selection",
+                      "selection": {
+                        "GC_IV_ExternalStatus": {
+                          "@type": "value",
+                          "value": "B19"
+                        }
+                      },
+                      "maxHits": 0
+                    },
+                    "selectionScreen": {
+                      "dataModelMapping": {
+                        "@type": "javascript",
+                        "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-DATE#1').toStart('DOC_DATE'); fields.map('SELSCR-DATE#2').toEnd('DOC_DATE'); fields.map('SELSCR-VENDOR').to('VENDOR_NO');fields.map('SELSCR-COMP_CODE').to('COMP_CODE'); fields.map('SELSCR-DOCNO').to('DOCNO'); fields.map('SELSCR-REFDOCNO').to('REF_DOC_NO'); fields.map('SELSCR-PO_NUMBER').to('PO_NUMBER'); fields.map('SELSCR-CURRENCY').to('CURRENCY'); fields.map('SELSCR-GROSS#1').toStart('GROSS_AMOUNT'); fields.map('SELSCR-GROSS#2').toEnd('GROSS_AMOUNT'); fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                      },
+                      "viewName": "IVselectionView",
+                      "id": "IVselection",
+                      "presetData": {
+                        "@type": "selection",
+                        "selection": {
+                          "SELSCR-MAX_NUMBER#1": {
+                            "@type": "value",
+                            "value": "500"
+                          },
+                          "SELSCR-VENDOR": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-COMP_CODE": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-DOCNO": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-REFDOCNO": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-DATE#1": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-DATE#2": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-PO_NUMBER": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-GROSS#1": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-GROSS#2": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-CURRENCY": {
+                            "@type": "value",
+                            "value": ""
+                          }
+                        },
+                        "maxHits": 0
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "action": [
+          {
+            "id": "SWWLN0",
+            "name": "$GUI_button.SWWLN0$",
+            "description": "$GUI_button.SWWLN0_TT$",
+            "state": 0,
+            "icon": "page-edit.png",
+            "selected": false
+          }
+        ]
+      },
+      {
+        "@type": "node",
+        "docType": "PO",
+        "nodeName": "$Worklist.allPO$",
+        "listDisplayView": "indexPO",
+        "counted": false,
+        "queryPrefetching": false,
+        "expand": false,
+        "nodeId": "allPO",
+        "selectionScreen": {
+          "dataModelMapping": {
+            "@type": "javascript",
+            "javascript": "function (context, parameter) {return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings : false}).configure(function (fields) {fields.map('SELSCR-PO_NUMBER').to('PO_NUMBER');fields.map('SELSCR-VENDOR').to('VENDOR');fields.map('SELSCR-COMP_CODE').to('CO_CODE');fields.map('SELSCR-DATE#1').toStart('DOC_DATE');fields.map('SELSCR-DATE#2').toEnd('DOC_DATE');fields.map('SELSCR-CURRENCY').to('CURRENCY');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+          },
+          "viewName": "POselectionView",
+          "id": "POselection",
+          "presetData": {
+            "@type": "selection",
+            "selection": {
+              "SELSCR-PO_NUMBER": {
+                "@type": "value",
+                "value": ""
+              },
+              "SELSCR-VENDOR": {
+                "@type": "value",
+                "value": ""
+              },
+              "SELSCR-COMP_CODE": {
+                "@type": "value",
+                "value": ""
+              },
+              "SELSCR-DATE#1": {
+                "@type": "value",
+                "value": ""
+              },
+              "SELSCR-DATE#2": {
+                "@type": "value",
+                "value": ""
+              },
+              "SELSCR-CURRENCY": {
+                "@type": "value",
+                "value": ""
+              },
+              "SELSCR-MAX_NUMBER#1": {
+                "@type": "value",
+                "value": "500"
+              }
+            },
+            "maxHits": 0
+          }
+        },
+        "subnodes": {
+          "@type": "nodes",
+          "nodes": [
+            {
+              "@type": "node",
+              "docType": "PO",
+              "nodeName": "$Worklist.PO_standard$",
+              "listDisplayView": "indexPO",
+              "counted": false,
+              "queryPrefetching": false,
+              "nodeId": "standard",
+              "selection": {
+                "@type": "selection",
+                "selection": {
+                  "DOC_TYPE": {
+                    "@type": "values",
+                    "values": [
+                      "NB",
+                      "LP",
+                      "LPA"
+                    ]
+                  }
+                },
+                "maxHits": 0
+              },
+              "selectionScreen": {
+                "dataModelMapping": {
+                  "@type": "javascript",
+                  "javascript": "function (context, parameter) {return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings : false}).configure(function (fields) {fields.map('SELSCR-PO_NUMBER').to('PO_NUMBER');fields.map('SELSCR-VENDOR').to('VENDOR');fields.map('SELSCR-COMP_CODE').to('CO_CODE');fields.map('SELSCR-DATE#1').toStart('DOC_DATE');fields.map('SELSCR-DATE#2').toEnd('DOC_DATE');fields.map('SELSCR-CURRENCY').to('CURRENCY');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                },
+                "viewName": "POselectionView",
+                "id": "POselection",
+                "presetData": {
+                  "@type": "selection",
+                  "selection": {
+                    "SELSCR-PO_NUMBER": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-VENDOR": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-COMP_CODE": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-DATE#1": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-DATE#2": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-CURRENCY": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-MAX_NUMBER#1": {
+                      "@type": "value",
+                      "value": "500"
+                    }
+                  },
+                  "maxHits": 0
+                }
+              }
+            },
+            {
+              "@type": "node",
+              "docType": "PO",
+              "nodeName": "$Worklist.PO_blanket$",
+              "listDisplayView": "indexPO",
+              "counted": false,
+              "queryPrefetching": false,
+              "nodeId": "blanket",
+              "selection": {
+                "@type": "selection",
+                "selection": {
+                  "DOC_TYPE": {
+                    "@type": "value",
+                    "value": "FO"
+                  }
+                },
+                "maxHits": 0
+              },
+              "selectionScreen": {
+                "dataModelMapping": {
+                  "@type": "javascript",
+                  "javascript": "function (context, parameter) {return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings : false}).configure(function (fields) {fields.map('SELSCR-PO_NUMBER').to('PO_NUMBER');fields.map('SELSCR-VENDOR').to('VENDOR');fields.map('SELSCR-COMP_CODE').to('CO_CODE');fields.map('SELSCR-DATE#1').toStart('DOC_DATE');fields.map('SELSCR-DATE#2').toEnd('DOC_DATE');fields.map('SELSCR-CURRENCY').to('CURRENCY');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                },
+                "viewName": "POselectionView",
+                "id": "POselection",
+                "presetData": {
+                  "@type": "selection",
+                  "selection": {
+                    "SELSCR-PO_NUMBER": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-VENDOR": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-COMP_CODE": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-DATE#1": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-DATE#2": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-CURRENCY": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-MAX_NUMBER#1": {
+                      "@type": "value",
+                      "value": "500"
+                    }
+                  },
+                  "maxHits": 0
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "node",
+        "docType": "MA",
+        "nodeName": "$Worklist.allMA$",
+        "listDisplayView": "indexMA",
+        "counted": false,
+        "queryPrefetching": false,
+        "expand": false,
+        "nodeId": "allMA",
+        "selectionScreen": {
+          "dataModelMapping": {
+            "@type": "javascript",
+            "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-VENDOR').to('VENDOR');fields.map('SELSCR-NAME').to('NAME');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+          },
+          "viewName": "MAselectionView",
+          "id": "MAselection",
+          "presetData": {
+            "@type": "selection",
+            "selection": {
+              "SELSCR-MAX_NUMBER#1": {
+                "@type": "value",
+                "value": "500"
+              },
+              "SELSCR-VENDOR": {
+                "@type": "value",
+                "value": ""
+              },
+              "SELSCR-NAME": {
+                "@type": "value",
+                "value": ""
+              }
+            },
+            "maxHits": 0
+          }
+        },
+        "subnodes": {
+          "@type": "nodes",
+          "nodes": [
+            {
+              "@type": "node",
+              "docType": "MA",
+              "nodeName": "$Worklist.Inactive$",
+              "listDisplayView": "indexMA",
+              "counted": false,
+              "queryPrefetching": false,
+              "nodeId": "inactiveMA",
+              "selection": {
+                "@type": "selection",
+                "selection": {
+                  "GC_MA_InternalStatus": {
+                    "@type": "values",
+                    "values": [
+                      "01",
+                      "02",
+                      "05"
+                    ]
+                  }
+                },
+                "maxHits": 0
+              },
+              "selectionScreen": {
+                "dataModelMapping": {
+                  "@type": "javascript",
+                  "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-VENDOR').to('VENDOR');fields.map('SELSCR-NAME').to('NAME');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                },
+                "viewName": "MAselectionView",
+                "id": "MAselection",
+                "presetData": {
+                  "@type": "selection",
+                  "selection": {
+                    "SELSCR-MAX_NUMBER#1": {
+                      "@type": "value",
+                      "value": "500"
+                    },
+                    "SELSCR-VENDOR": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-NAME": {
+                      "@type": "value",
+                      "value": ""
+                    }
+                  },
+                  "maxHits": 0
+                }
+              }
+            },
+            {
+              "@type": "node",
+              "docType": "MA",
+              "nodeName": "$Worklist.Active$",
+              "listDisplayView": "indexMA",
+              "counted": false,
+              "queryPrefetching": false,
+              "nodeId": "activeMA",
+              "selection": {
+                "@type": "selection",
+                "selection": {
+                  "GC_MA_InternalStatus": {
+                    "@type": "value",
+                    "value": "10"
+                  }
+                },
+                "maxHits": 0
+              },
+              "selectionScreen": {
+                "dataModelMapping": {
+                  "@type": "javascript",
+                  "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-VENDOR').to('VENDOR');fields.map('SELSCR-NAME').to('NAME');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                },
+                "viewName": "MAselectionView",
+                "id": "MAselection",
+                "presetData": {
+                  "@type": "selection",
+                  "selection": {
+                    "SELSCR-MAX_NUMBER#1": {
+                      "@type": "value",
+                      "value": "500"
+                    },
+                    "SELSCR-VENDOR": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-NAME": {
+                      "@type": "value",
+                      "value": ""
+                    }
+                  },
+                  "maxHits": 0
+                }
+              }
+            },
+            {
+              "@type": "node",
+              "docType": "MA",
+              "nodeName": "$Worklist.MA_InWorkflow$",
+              "listDisplayView": "indexMA",
+              "counted": false,
+              "queryPrefetching": false,
+              "nodeId": "workflowMA",
+              "hideNode": {
+                "@type": "javascript",
+                "javascript": "function(context,parameter){var mode=context.getContextSetting('datachange.MA.mode');if('Workflow'==mode){return AbstractValue.value('NO');}else{return AbstractValue.value('YES');};}"
+              },
+              "selection": {
+                "@type": "selection",
+                "selection": {
+                  "GC_MA_InternalStatus": {
+                    "@type": "value",
+                    "value": "WF"
+                  }
+                },
+                "maxHits": 0
+              },
+              "selectionScreen": {
+                "dataModelMapping": {
+                  "@type": "javascript",
+                  "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-VENDOR').to('VENDOR');fields.map('SELSCR-NAME').to('NAME');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                },
+                "viewName": "MAselectionView",
+                "id": "MAselection",
+                "presetData": {
+                  "@type": "selection",
+                  "selection": {
+                    "SELSCR-MAX_NUMBER#1": {
+                      "@type": "value",
+                      "value": "500"
+                    },
+                    "SELSCR-VENDOR": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-NAME": {
+                      "@type": "value",
+                      "value": ""
+                    }
+                  },
+                  "maxHits": 0
+                }
+              }
+            },
+            {
+              "@type": "node",
+              "docType": "MC",
+              "nodeName": "$Worklist.allMC$",
+              "listDisplayView": "indexMC",
+              "counted": false,
+              "nodeId": "allMC",
+              "hideNode": {
+                "@type": "javascript",
+                "javascript": "function(context,parameter){var mode=context.getContextSetting('datachange.MA.mode');if('Flip'==mode){return AbstractValue.value('NO');}else{return AbstractValue.value('YES');};}"
+              }
+            }
+          ]
+        },
+        "action": [
+          {
+            "id": "SWWLN0&AUTHORIZATION",
+            "name": "$GUI_button.AUTHORIZATION$",
+            "description": "$GUI_button.AUTHORIZATION_MA_DEFAULT_TT$",
+            "state": 0,
+            "icon": "key.png",
+            "selected": false
+          }
+        ]
+      },
+      {
+        "@type": "node",
+        "nodeName": "$Worklist.Administration$",
+        "counted": false,
+        "expand": false,
+        "visibleForRoles": [
+          "SuperAdmin",
+          "Admin",
+          "Ordinary"
+        ],
+        "nodeId": "Administration",
+        "active": false,
+        "subnodes": {
+          "@type": "nodes",
+          "nodes": [
+            {
+              "@type": "node",
+              "docType": "IdahoUser",
+              "nodeName": "$Worklist.allIdahoUser$",
+              "listDisplayView": "indexIdahoUser",
+              "counted": false,
+              "queryPrefetching": false,
+              "nodeId": "User Profile",
+              "selection": {
+                "@type": "selection",
+                "selection": {
+                  "username": {
+                    "@type": "javascript",
+                    "javascript": "function(context, parameter){var name=context.getUser().getUsername(); if (context.getUser().getUserRole() == 'SuperAdmin' || context.getUser().getUserRole() == 'Admin' || context.getUser().getUserRole() == 'SupplierAdmin' || context.getUser().getUserRole() == 'Ordinary') {return AbstractValue.wildcard();}else{return AbstractValue.value(name);}}"
+                  }
+                },
+                "maxHits": 0
+              },
+              "selectionScreen": {
+                "dataModelMapping": {
+                  "@type": "javascript",
+                  "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-USERNAME').to('username');fields.map('SELSCR-NAME').to('name');fields.map('SELSCR-EMAIL').to('email');fields.map('SELSCR-VENDOR').to('vendors');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                },
+                "viewName": "IdahoUserselectionView",
+                "id": "IdahoUserselection",
+                "presetData": {
+                  "@type": "selection",
+                  "selection": {
+                    "SELSCR-MAX_NUMBER#1": {
+                      "@type": "value",
+                      "value": "500"
+                    },
+                    "SELSCR-VENDOR": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-USERNAME": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-NAME": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-EMAIL": {
+                      "@type": "value",
+                      "value": ""
+                    }
+                  },
+                  "maxHits": 0
+                }
+              },
+              "subnodes": {
+                "@type": "nodes",
+                "nodes": [
+                  {
+                    "@type": "node",
+                    "docType": "IdahoUser",
+                    "nodeName": "$Worklist.Inactive$",
+                    "listDisplayView": "indexIdahoUser",
+                    "nodeId": "inactiveIdahoUser",
+                    "selection": {
+                      "@type": "selection",
+                      "selection": {
+                        "state": {
+                          "@type": "values",
+                          "values": [
+                            "01"
+                          ]
+                        }
+                      },
+                      "maxHits": 0
+                    },
+                    "selectionScreen": {
+                      "dataModelMapping": {
+                        "@type": "javascript",
+                        "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-USERNAME').to('username');fields.map('SELSCR-NAME').to('name');fields.map('SELSCR-EMAIL').to('email');fields.map('SELSCR-VENDOR').to('vendors');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                      },
+                      "viewName": "IdahoUserselectionView",
+                      "id": "IdahoUserselection",
+                      "presetData": {
+                        "@type": "selection",
+                        "selection": {
+                          "SELSCR-MAX_NUMBER#1": {
+                            "@type": "value",
+                            "value": "500"
+                          },
+                          "SELSCR-VENDOR": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-USERNAME": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-NAME": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-EMAIL": {
+                            "@type": "value",
+                            "value": ""
+                          }
+                        },
+                        "maxHits": 0
+                      }
+                    }
+                  },
+                  {
+                    "@type": "node",
+                    "docType": "IdahoUser",
+                    "nodeName": "$Worklist.Locked$",
+                    "listDisplayView": "indexIdahoUser",
+                    "nodeId": "lockedIdahoUser",
+                    "selection": {
+                      "@type": "selection",
+                      "selection": {
+                        "locked": {
+                          "@type": "values",
+                          "values": [
+                            "true"
+                          ]
+                        },
+                        "state": {
+                          "@type": "values",
+                          "values": [
+                            "0",
+                            "02"
+                          ]
+                        }
+                      },
+                      "maxHits": 0
+                    },
+                    "selectionScreen": {
+                      "dataModelMapping": {
+                        "@type": "javascript",
+                        "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-USERNAME').to('username');fields.map('SELSCR-NAME').to('name');fields.map('SELSCR-EMAIL').to('email');fields.map('SELSCR-VENDOR').to('vendors');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                      },
+                      "viewName": "IdahoUserselectionView",
+                      "id": "IdahoUserselection",
+                      "presetData": {
+                        "@type": "selection",
+                        "selection": {
+                          "SELSCR-MAX_NUMBER#1": {
+                            "@type": "value",
+                            "value": "500"
+                          },
+                          "SELSCR-VENDOR": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-USERNAME": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-NAME": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-EMAIL": {
+                            "@type": "value",
+                            "value": ""
+                          }
+                        },
+                        "maxHits": 0
+                      }
+                    },
+                    "subnodes": {
+                      "@type": "nodes",
+                      "nodes": [
+                        {
+                          "@type": "node",
+                          "docType": "IdahoUser",
+                          "nodeName": "$MNG_usr_lockreason.BY_ADMIN$",
+                          "listDisplayView": "indexIdahoUser",
+                          "nodeId": "lockedIdahoUser BY_ADMIN",
+                          "selection": {
+                            "@type": "selection",
+                            "selection": {
+                              "locked": {
+                                "@type": "values",
+                                "values": [
+                                  "true"
+                                ]
+                              },
+                              "state": {
+                                "@type": "values",
+                                "values": [
+                                  "0"
+                                ]
+                              },
+                              "lockReason": {
+                                "@type": "values",
+                                "values": [
+                                  "BY_ADMIN"
+                                ]
+                              }
+                            },
+                            "maxHits": 0
+                          },
+                          "selectionScreen": {
+                            "dataModelMapping": {
+                              "@type": "javascript",
+                              "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-USERNAME').to('username');fields.map('SELSCR-NAME').to('name');fields.map('SELSCR-EMAIL').to('email');fields.map('SELSCR-VENDOR').to('vendors');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                            },
+                            "viewName": "IdahoUserselectionView",
+                            "id": "IdahoUserselection",
+                            "presetData": {
+                              "@type": "selection",
+                              "selection": {
+                                "SELSCR-MAX_NUMBER#1": {
+                                  "@type": "value",
+                                  "value": "500"
+                                },
+                                "SELSCR-VENDOR": {
+                                  "@type": "value",
+                                  "value": ""
+                                },
+                                "SELSCR-USERNAME": {
+                                  "@type": "value",
+                                  "value": ""
+                                },
+                                "SELSCR-NAME": {
+                                  "@type": "value",
+                                  "value": ""
+                                },
+                                "SELSCR-EMAIL": {
+                                  "@type": "value",
+                                  "value": ""
+                                }
+                              },
+                              "maxHits": 0
+                            }
+                          }
+                        },
+                        {
+                          "@type": "node",
+                          "docType": "IdahoUser",
+                          "nodeName": "$MNG_usr_lockreason.WRONGPASSWORD$",
+                          "listDisplayView": "indexIdahoUser",
+                          "nodeId": "lockedIdahoUser WRONGPASSWORD",
+                          "selection": {
+                            "@type": "selection",
+                            "selection": {
+                              "locked": {
+                                "@type": "values",
+                                "values": [
+                                  "true"
+                                ]
+                              },
+                              "state": {
+                                "@type": "values",
+                                "values": [
+                                  "0"
+                                ]
+                              },
+                              "lockReason": {
+                                "@type": "values",
+                                "values": [
+                                  "WRONGPASSWORD"
+                                ]
+                              }
+                            },
+                            "maxHits": 0
+                          },
+                          "selectionScreen": {
+                            "dataModelMapping": {
+                              "@type": "javascript",
+                              "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-USERNAME').to('username');fields.map('SELSCR-NAME').to('name');fields.map('SELSCR-EMAIL').to('email');fields.map('SELSCR-VENDOR').to('vendors');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                            },
+                            "viewName": "IdahoUserselectionView",
+                            "id": "IdahoUserselection",
+                            "presetData": {
+                              "@type": "selection",
+                              "selection": {
+                                "SELSCR-MAX_NUMBER#1": {
+                                  "@type": "value",
+                                  "value": "500"
+                                },
+                                "SELSCR-VENDOR": {
+                                  "@type": "value",
+                                  "value": ""
+                                },
+                                "SELSCR-USERNAME": {
+                                  "@type": "value",
+                                  "value": ""
+                                },
+                                "SELSCR-NAME": {
+                                  "@type": "value",
+                                  "value": ""
+                                },
+                                "SELSCR-EMAIL": {
+                                  "@type": "value",
+                                  "value": ""
+                                }
+                              },
+                              "maxHits": 0
+                            }
+                          }
+                        },
+                        {
+                          "@type": "node",
+                          "docType": "IdahoUser",
+                          "nodeName": "$MNG_usr_lockreason.REGISTRATIONNOTFINISHED$",
+                          "listDisplayView": "indexIdahoUser",
+                          "nodeId": "lockedIdahoUser REGISTRATIONNOTFINISHED",
+                          "hideNode": {
+                            "@type": "javascript",
+                            "javascript": "function(context,parameter){var mode=context.getContextSetting('selfregister.hide');if('true'==mode){return AbstractValue.value('YES');}else{return AbstractValue.value('NO');};}"
+                          },
+                          "selection": {
+                            "@type": "selection",
+                            "selection": {
+                              "locked": {
+                                "@type": "values",
+                                "values": [
+                                  "true"
+                                ]
+                              },
+                              "state": {
+                                "@type": "values",
+                                "values": [
+                                  "0"
+                                ]
+                              },
+                              "lockReason": {
+                                "@type": "values",
+                                "values": [
+                                  "REGISTRATIONNOTFINISHED"
+                                ]
+                              }
+                            },
+                            "maxHits": 0
+                          },
+                          "selectionScreen": {
+                            "dataModelMapping": {
+                              "@type": "javascript",
+                              "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-USERNAME').to('username');fields.map('SELSCR-NAME').to('name');fields.map('SELSCR-EMAIL').to('email');fields.map('SELSCR-VENDOR').to('vendors');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                            },
+                            "viewName": "IdahoUserselectionView",
+                            "id": "IdahoUserselection",
+                            "presetData": {
+                              "@type": "selection",
+                              "selection": {
+                                "SELSCR-MAX_NUMBER#1": {
+                                  "@type": "value",
+                                  "value": "500"
+                                },
+                                "SELSCR-VENDOR": {
+                                  "@type": "value",
+                                  "value": ""
+                                },
+                                "SELSCR-USERNAME": {
+                                  "@type": "value",
+                                  "value": ""
+                                },
+                                "SELSCR-NAME": {
+                                  "@type": "value",
+                                  "value": ""
+                                },
+                                "SELSCR-EMAIL": {
+                                  "@type": "value",
+                                  "value": ""
+                                }
+                              },
+                              "maxHits": 0
+                            }
+                          }
+                        },
+                        {
+                          "@type": "node",
+                          "docType": "IdahoUser",
+                          "nodeName": "$MNG_usr_lockreason.REGISTRATIONREJECTED$",
+                          "listDisplayView": "indexIdahoUser",
+                          "nodeId": "lockedIdahoUser REGISTRATIONREJECTED",
+                          "hideNode": {
+                            "@type": "javascript",
+                            "javascript": "function(context,parameter){var mode=context.getContextSetting('selfregister.hide');if('true'==mode){return AbstractValue.value('YES');}else{return AbstractValue.value('NO');};}"
+                          },
+                          "selection": {
+                            "@type": "selection",
+                            "selection": {
+                              "locked": {
+                                "@type": "values",
+                                "values": [
+                                  "true"
+                                ]
+                              },
+                              "state": {
+                                "@type": "values",
+                                "values": [
+                                  "02"
+                                ]
+                              },
+                              "lockReason": {
+                                "@type": "values",
+                                "values": [
+                                  "REGISTRATIONREJECTED"
+                                ]
+                              }
+                            },
+                            "maxHits": 0
+                          },
+                          "selectionScreen": {
+                            "dataModelMapping": {
+                              "@type": "javascript",
+                              "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-USERNAME').to('username');fields.map('SELSCR-NAME').to('name');fields.map('SELSCR-EMAIL').to('email');fields.map('SELSCR-VENDOR').to('vendors');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                            },
+                            "viewName": "IdahoUserselectionView",
+                            "id": "IdahoUserselection",
+                            "presetData": {
+                              "@type": "selection",
+                              "selection": {
+                                "SELSCR-MAX_NUMBER#1": {
+                                  "@type": "value",
+                                  "value": "500"
+                                },
+                                "SELSCR-VENDOR": {
+                                  "@type": "value",
+                                  "value": ""
+                                },
+                                "SELSCR-USERNAME": {
+                                  "@type": "value",
+                                  "value": ""
+                                },
+                                "SELSCR-NAME": {
+                                  "@type": "value",
+                                  "value": ""
+                                },
+                                "SELSCR-EMAIL": {
+                                  "@type": "value",
+                                  "value": ""
+                                }
+                              },
+                              "maxHits": 0
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "@type": "node",
+                    "docType": "IdahoUser",
+                    "nodeName": "$GC_IdahoUser_InternalStatus.WF$",
+                    "listDisplayView": "indexIdahoUser",
+                    "nodeId": "workflowIdahoUser",
+                    "hideNode": {
+                      "@type": "javascript",
+                      "javascript": "function(context,parameter){var mode=context.getContextSetting('selfregister.hide');if('true'==mode){return AbstractValue.value('YES');}else{return AbstractValue.value('NO');};}"
+                    },
+                    "selection": {
+                      "@type": "selection",
+                      "selection": {
+                        "state": {
+                          "@type": "values",
+                          "values": [
+                            "WF"
+                          ]
+                        }
+                      },
+                      "maxHits": 0
+                    },
+                    "selectionScreen": {
+                      "dataModelMapping": {
+                        "@type": "javascript",
+                        "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-USERNAME').to('username');fields.map('SELSCR-NAME').to('name');fields.map('SELSCR-EMAIL').to('email');fields.map('SELSCR-VENDOR').to('vendors');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                      },
+                      "viewName": "IdahoUserselectionView",
+                      "id": "IdahoUserselection",
+                      "presetData": {
+                        "@type": "selection",
+                        "selection": {
+                          "SELSCR-MAX_NUMBER#1": {
+                            "@type": "value",
+                            "value": "500"
+                          },
+                          "SELSCR-VENDOR": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-USERNAME": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-NAME": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-EMAIL": {
+                            "@type": "value",
+                            "value": ""
+                          }
+                        },
+                        "maxHits": 0
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "node",
+        "nodeName": "$Worklist.Reporting$",
+        "counted": false,
+        "expand": false,
+        "visibleForRoles": [
+          "SuperAdmin",
+          "Admin"
+        ],
+        "nodeId": "Reporting",
+        "active": false,
+        "subnodes": {
+          "@type": "nodes",
+          "nodes": [
+            {
+              "@type": "node",
+              "docType": "IV",
+              "nodeName": "$Worklist.Invoices_Created$",
+              "listDisplayView": "indexIV",
+              "counted": false,
+              "queryPrefetching": false,
+              "nodeId": "Created_Invoices_Reports",
+              "hideNode": {
+                "@type": "javascript",
+                "javascript": "function(context,parameter){var mode=context.getContextSetting('invoicecreation.mode');if('0'==mode){return AbstractValue.value('YES');}else{return AbstractValue.value('NO');};}"
+              },
+              "active": false,
+              "selectionScreen": {
+                "dataModelMapping": {
+                  "@type": "javascript",
+                  "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-CRDATE#1').toStart('CR_TIMESTAMP'); fields.map('SELSCR-CRDATE#2').toEnd('CR_TIMESTAMP'); fields.map('SELSCR-VENDOR').to('VENDOR_NO');fields.map('SELSCR-COMP_CODE').to('COMP_CODE'); fields.map('SELSCR-PO_NUMBER').to('PO_NUMBER'); fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                },
+                "viewName": "IVselectionView",
+                "id": "IVselection",
+                "presetData": {
+                  "@type": "selection",
+                  "selection": {
+                    "SELSCR-MAX_NUMBER#1": {
+                      "@type": "value",
+                      "value": "500"
+                    },
+                    "SELSCR-VENDOR": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-COMP_CODE": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-CRDATE#1": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-CRDATE#2": {
+                      "@type": "value",
+                      "value": ""
+                    },
+                    "SELSCR-PO_NUMBER": {
+                      "@type": "value",
+                      "value": ""
+                    }
+                  },
+                  "maxHits": 0
+                }
+              },
+              "subnodes": {
+                "@type": "nodes",
+                "nodes": [
+                  {
+                    "@type": "node",
+                    "docType": "IV",
+                    "nodeName": "$Worklist.All_Invoices$",
+                    "listDisplayView": "indexIV",
+                    "counted": false,
+                    "queryPrefetching": false,
+                    "nodeId": "All_Created_Invoices",
+                    "selection": {
+                      "@type": "selection",
+                      "selection": {
+                        "ORIGIN": {
+                          "@type": "value",
+                          "value": "9"
+                        }
+                      },
+                      "maxHits": 0
+                    },
+                    "selectionScreen": {
+                      "dataModelMapping": {
+                        "@type": "javascript",
+                        "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-CRDATE#1').toStart('CR_TIMESTAMP'); fields.map('SELSCR-CRDATE#2').toEnd('CR_TIMESTAMP'); fields.map('SELSCR-VENDOR').to('VENDOR_NO');fields.map('SELSCR-COMP_CODE').to('COMP_CODE'); fields.map('SELSCR-PO_NUMBER').to('PO_NUMBER'); fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                      },
+                      "viewName": "IVselectionView",
+                      "id": "IVselection",
+                      "presetData": {
+                        "@type": "selection",
+                        "selection": {
+                          "SELSCR-MAX_NUMBER#1": {
+                            "@type": "value",
+                            "value": "500"
+                          },
+                          "SELSCR-VENDOR": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-COMP_CODE": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-CRDATE#1": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-CRDATE#2": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-PO_NUMBER": {
+                            "@type": "value",
+                            "value": ""
+                          }
+                        },
+                        "maxHits": 0
+                      }
+                    },
+                    "subnodes": {
+                      "@type": "nodes",
+                      "nodes": [
+                        {
+                          "@type": "javascriptReferencedNode",
+                          "docType": "IV",
+                          "javascriptReference": "createdInvoicesReport"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "@type": "node",
+                    "docType": "IV",
+                    "nodeName": "$Worklist.General_Expense$",
+                    "listDisplayView": "indexIV",
+                    "counted": false,
+                    "queryPrefetching": false,
+                    "nodeId": "General_Expense",
+                    "hideNode": {
+                      "@type": "javascript",
+                      "javascript": "function(context,parameter){var mode=context.getContextSetting('invoicecreation.mode');if('2'!=mode){return AbstractValue.value('YES');}else{return AbstractValue.value('NO');};}"
+                    },
+                    "selection": {
+                      "@type": "selection",
+                      "selection": {
+                        "FI_MM_FLG": {
+                          "@type": "value",
+                          "value": "FI"
+                        },
+                        "ORIGIN": {
+                          "@type": "value",
+                          "value": "9"
+                        }
+                      },
+                      "maxHits": 0
+                    },
+                    "selectionScreen": {
+                      "dataModelMapping": {
+                        "@type": "javascript",
+                        "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-CRDATE#1').toStart('CR_TIMESTAMP'); fields.map('SELSCR-CRDATE#2').toEnd('CR_TIMESTAMP'); fields.map('SELSCR-VENDOR').to('VENDOR_NO');fields.map('SELSCR-COMP_CODE').to('COMP_CODE'); fields.map('SELSCR-PO_NUMBER').to('PO_NUMBER'); fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                      },
+                      "viewName": "IVselectionView",
+                      "id": "IVselection",
+                      "presetData": {
+                        "@type": "selection",
+                        "selection": {
+                          "SELSCR-MAX_NUMBER#1": {
+                            "@type": "value",
+                            "value": "500"
+                          },
+                          "SELSCR-VENDOR": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-COMP_CODE": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-CRDATE#1": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-CRDATE#2": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-PO_NUMBER": {
+                            "@type": "value",
+                            "value": ""
+                          }
+                        },
+                        "maxHits": 0
+                      }
+                    },
+                    "subnodes": {
+                      "@type": "nodes",
+                      "nodes": [
+                        {
+                          "@type": "javascriptReferencedNode",
+                          "docType": "IV",
+                          "javascriptReference": "getGeneralExpenseInvoicesReport"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "@type": "node",
+                    "docType": "IV",
+                    "nodeName": "$Worklist.PO_Based$",
+                    "listDisplayView": "indexIV",
+                    "counted": false,
+                    "queryPrefetching": false,
+                    "nodeId": "PO_Based",
+                    "selection": {
+                      "@type": "selection",
+                      "selection": {
+                        "FI_MM_FLG": {
+                          "@type": "value",
+                          "value": "MM"
+                        },
+                        "ORIGIN": {
+                          "@type": "value",
+                          "value": "9"
+                        }
+                      },
+                      "maxHits": 0
+                    },
+                    "selectionScreen": {
+                      "dataModelMapping": {
+                        "@type": "javascript",
+                        "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-CRDATE#1').toStart('CR_TIMESTAMP'); fields.map('SELSCR-CRDATE#2').toEnd('CR_TIMESTAMP'); fields.map('SELSCR-VENDOR').to('VENDOR_NO');fields.map('SELSCR-COMP_CODE').to('COMP_CODE'); fields.map('SELSCR-PO_NUMBER').to('PO_NUMBER'); fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                      },
+                      "viewName": "IVselectionView",
+                      "id": "IVselection",
+                      "presetData": {
+                        "@type": "selection",
+                        "selection": {
+                          "SELSCR-MAX_NUMBER#1": {
+                            "@type": "value",
+                            "value": "500"
+                          },
+                          "SELSCR-VENDOR": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-COMP_CODE": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-CRDATE#1": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-CRDATE#2": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-PO_NUMBER": {
+                            "@type": "value",
+                            "value": ""
+                          }
+                        },
+                        "maxHits": 0
+                      }
+                    },
+                    "subnodes": {
+                      "@type": "nodes",
+                      "nodes": [
+                        {
+                          "@type": "javascriptReferencedNode",
+                          "docType": "IV",
+                          "javascriptReference": "getPOBasedInvoicesReport"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "@type": "node",
+                    "docType": "IV",
+                    "nodeName": "$Worklist.Drafts_Aging$",
+                    "listDisplayView": "indexIV",
+                    "counted": false,
+                    "queryPrefetching": false,
+                    "nodeId": "Drafts_Aging",
+                    "selection": {
+                      "@type": "selection",
+                      "selection": {
+                        "GC_IV_ExternalStatus": {
+                          "@type": "value",
+                          "value": "B01"
+                        },
+                        "ORIGIN": {
+                          "@type": "value",
+                          "value": "9"
+                        }
+                      },
+                      "maxHits": 0
+                    },
+                    "active": false,
+                    "selectionScreen": {
+                      "dataModelMapping": {
+                        "@type": "javascript",
+                        "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-CRDATE#1').toStart('CR_TIMESTAMP'); fields.map('SELSCR-CRDATE#2').toEnd('CR_TIMESTAMP'); fields.map('SELSCR-VENDOR').to('VENDOR_NO');fields.map('SELSCR-COMP_CODE').to('COMP_CODE'); fields.map('SELSCR-PO_NUMBER').to('PO_NUMBER'); fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                      },
+                      "viewName": "IVselectionView",
+                      "id": "IVselection",
+                      "presetData": {
+                        "@type": "selection",
+                        "selection": {
+                          "SELSCR-MAX_NUMBER#1": {
+                            "@type": "value",
+                            "value": "500"
+                          },
+                          "SELSCR-VENDOR": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-COMP_CODE": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-CRDATE#1": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-CRDATE#2": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-PO_NUMBER": {
+                            "@type": "value",
+                            "value": ""
+                          }
+                        },
+                        "maxHits": 0
+                      }
+                    },
+                    "subnodes": {
+                      "@type": "nodes",
+                      "nodes": [
+                        {
+                          "@type": "javascriptReferencedNode",
+                          "docType": "IV",
+                          "javascriptReference": "getDraftsAgingInvoicesReport"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "@type": "node",
+              "docType": "IdahoUser",
+              "nodeName": "$Worklist.User_Reports$",
+              "listDisplayView": "indexIdahoUser",
+              "counted": false,
+              "queryPrefetching": false,
+              "nodeId": "User_Reports",
+              "active": false,
+              "subnodes": {
+                "@type": "nodes",
+                "nodes": [
+                  {
+                    "@type": "node",
+                    "docType": "IdahoUser",
+                    "nodeName": "$Worklist.General_Activity$",
+                    "listDisplayView": "indexIdahoUser",
+                    "counted": false,
+                    "queryPrefetching": false,
+                    "nodeId": "General_Activity_Reports",
+                    "selectionScreen": {
+                      "dataModelMapping": {
+                        "@type": "javascript",
+                        "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-DATE#1').toStart('lastLogin');fields.map('SELSCR-DATE#2').toEnd('lastLogin'); fields.map('SELSCR-USERNAME').to('username');fields.map('SELSCR-NAME').to('name');fields.map('SELSCR-EMAIL').to('email');fields.map('SELSCR-VENDOR').to('vendors');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                      },
+                      "viewName": "IdahoUserselectionView",
+                      "id": "IdahoUserselection",
+                      "presetData": {
+                        "@type": "selection",
+                        "selection": {
+                          "SELSCR-MAX_NUMBER#1": {
+                            "@type": "value",
+                            "value": "500"
+                          },
+                          "SELSCR-VENDOR": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-USERNAME": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-DATE#1": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-DATE#2": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-NAME": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-EMAIL": {
+                            "@type": "value",
+                            "value": ""
+                          }
+                        },
+                        "maxHits": 0
+                      }
+                    },
+                    "subnodes": {
+                      "@type": "javascriptReferencedNode",
+                      "docType": "IdahoUser",
+                      "javascriptReference": "uniqueLogin"
+                    }
+                  },
+                  {
+                    "@type": "node",
+                    "docType": "AuditTrailDomain",
+                    "designDoc": "_design/WorklistAuditTrail",
+                    "nodeName": "$Worklist.Registration$",
+                    "listDisplayView": "indexAuditTrailDomain",
+                    "counted": false,
+                    "queryPrefetching": false,
+                    "nodeId": "Registration_Reports",
+                    "hideNode": {
+                      "@type": "javascript",
+                      "javascript": "function(context,parameter){var mode=context.getContextSetting('selfregister.hide');if('true'==mode){return AbstractValue.value('YES');}else{return AbstractValue.value('NO');};}"
+                    },
+                    "selection": {
+                      "@type": "selection",
+                      "selection": {
+                        "Activity": {
+                          "@type": "value",
+                          "value": "gc.selfregister.step.1.tabtitle"
+                        }
+                      },
+                      "maxHits": 0
+                    },
+                    "selectionScreen": {
+                      "dataModelMapping": {
+                        "@type": "javascript",
+                        "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-DATE#1').toStart('LogDate');fields.map('SELSCR-DATE#2').toEnd('LogDate'); fields.map('SELSCR-USERNAME').to('username');fields.map('SELSCR-NAME').to('name');fields.map('SELSCR-EMAIL').to('email');fields.map('SELSCR-VENDOR').to('vendors');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                      },
+                      "viewName": "IdahoUserselectionView",
+                      "id": "IdahoUserselection",
+                      "presetData": {
+                        "@type": "selection",
+                        "selection": {
+                          "SELSCR-MAX_NUMBER#1": {
+                            "@type": "value",
+                            "value": "500"
+                          },
+                          "SELSCR-VENDOR": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-USERNAME": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-DATE#1": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-DATE#2": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-NAME": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-EMAIL": {
+                            "@type": "value",
+                            "value": ""
+                          }
+                        },
+                        "maxHits": 0
+                      }
+                    },
+                    "subnodes": {
+                      "@type": "javascriptReferencedNode",
+                      "docType": "AuditTrailDomain",
+                      "designDoc": "_design/WorklistAuditTrail",
+                      "javascriptReference": "getRegistrationDetails"
+                    }
+                  },
+                  {
+                    "@type": "node",
+                    "docType": "IdahoUser",
+                    "nodeName": "$Worklist.Current_Registrations_in_Workflow$",
+                    "listDisplayView": "indexIdahoUser",
+                    "nodeId": "inWorkflowUser",
+                    "hideNode": {
+                      "@type": "javascript",
+                      "javascript": "function(context,parameter){var mode=context.getContextSetting('selfregister.hide');if('true'==mode){return AbstractValue.value('YES');}else{return AbstractValue.value('NO');};}"
+                    },
+                    "selection": {
+                      "@type": "selection",
+                      "selection": {
+                        "state": {
+                          "@type": "values",
+                          "values": [
+                            "WF"
+                          ]
+                        }
+                      },
+                      "maxHits": 0
+                    }
+                  },
+                  {
+                    "@type": "node",
+                    "docType": "WC_archive",
+                    "designDoc": "_design/Worklist_default",
+                    "nodeName": "$Worklist.Registration_History$",
+                    "listDisplayView": "indexWC_archive",
+                    "counted": false,
+                    "queryPrefetching": false,
+                    "nodeId": "Registration_history",
+                    "hideNode": {
+                      "@type": "javascript",
+                      "javascript": "function(context,parameter){var mode=context.getContextSetting('selfregister.hide');if('true'==mode){return AbstractValue.value('YES');}else{return AbstractValue.value('NO');};}"
+                    },
+                    "selectionScreen": {
+                      "dataModelMapping": {
+                        "@type": "javascript",
+                        "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-STATE').to('STATE');fields.map('SELSCR-DATE#1').toStart('lastLogin'); fields.map('SELSCR-DATE#2').toEnd('START_DATE');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                      },
+                      "viewName": "WC_archiveselectionView",
+                      "id": "WC_archiveselection",
+                      "presetData": {
+                        "@type": "selection",
+                        "selection": {
+                          "SELSCR-MAX_NUMBER#1": {
+                            "@type": "value",
+                            "value": "500"
+                          },
+                          "SELSCR-DATE#1": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-DATE#2": {
+                            "@type": "value",
+                            "value": ""
+                          },
+                          "SELSCR-STATE": {
+                            "@type": "value",
+                            "value": ""
+                          }
+                        },
+                        "maxHits": 0
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "@type": "node",
+              "nodeName": "$Worklist.Advanced_Searches$",
+              "counted": false,
+              "nodeId": "Advanced_Searches",
+              "active": false,
+              "subnodes": {
+                "@type": "nodes",
+                "nodes": [
+                  {
+                    "@type": "nodes",
+                    "nodes": [
+                      {
+                        "@type": "node",
+                        "docType": "AuditTrailData",
+                        "designDoc": "_design/WorklistAuditTrail",
+                        "nodeName": "$Worklist.allIV$",
+                        "listDisplayView": "indexAuditTrailData",
+                        "counted": false,
+                        "queryPrefetching": false,
+                        "nodeId": "AuditTrail_IV",
+                        "selection": {
+                          "@type": "selection",
+                          "selection": {
+                            "DocumentType": {
+                              "@type": "values",
+                              "values": [
+                                "IV"
+                              ]
+                            }
+                          },
+                          "maxHits": 0
+                        },
+                        "selectionScreen": {
+                          "dataModelMapping": {
+                            "@type": "javascript",
+                            "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-DATE#1').toStart('LogDate');fields.map('SELSCR-DATE#2').toEnd('LogDate');fields.map('SELSCR-LOGGER').to('EntryLogger');fields.map('SELSCR-ACTIVITY').to('Activity');fields.map('SELSCR-MESSAGE').to('Message');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                          },
+                          "viewName": "AuditTrailReportselectionView",
+                          "id": "AuditTrailReportselection",
+                          "presetData": {
+                            "@type": "selection",
+                            "selection": {
+                              "SELSCR-MAX_NUMBER#1": {
+                                "@type": "value",
+                                "value": "500"
+                              },
+                              "SELSCR-ACTIVITY": {
+                                "@type": "value",
+                                "value": ""
+                              },
+                              "SELSCR-LOGGER": {
+                                "@type": "value",
+                                "value": ""
+                              },
+                              "SELSCR-MESSAGE": {
+                                "@type": "value",
+                                "value": ""
+                              },
+                              "SELSCR-DATE#1": {
+                                "@type": "value",
+                                "value": ""
+                              },
+                              "SELSCR-DATE#2": {
+                                "@type": "value",
+                                "value": ""
+                              }
+                            },
+                            "maxHits": 0
+                          }
+                        }
+                      },
+                      {
+                        "@type": "node",
+                        "docType": "AuditTrailData",
+                        "designDoc": "_design/WorklistAuditTrail",
+                        "nodeName": "$Worklist.allPO$",
+                        "listDisplayView": "indexAuditTrailData",
+                        "counted": false,
+                        "queryPrefetching": false,
+                        "nodeId": "AuditTrail_PO",
+                        "selection": {
+                          "@type": "selection",
+                          "selection": {
+                            "DocumentType": {
+                              "@type": "values",
+                              "values": [
+                                "PO"
+                              ]
+                            }
+                          },
+                          "maxHits": 0
+                        },
+                        "selectionScreen": {
+                          "dataModelMapping": {
+                            "@type": "javascript",
+                            "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-DATE#1').toStart('LogDate');fields.map('SELSCR-DATE#2').toEnd('LogDate');fields.map('SELSCR-LOGGER').to('EntryLogger');fields.map('SELSCR-ACTIVITY').to('Activity');fields.map('SELSCR-MESSAGE').to('Message');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                          },
+                          "viewName": "AuditTrailReportselectionView",
+                          "id": "AuditTrailReportselection",
+                          "presetData": {
+                            "@type": "selection",
+                            "selection": {
+                              "SELSCR-MAX_NUMBER#1": {
+                                "@type": "value",
+                                "value": "500"
+                              },
+                              "SELSCR-ACTIVITY": {
+                                "@type": "value",
+                                "value": ""
+                              },
+                              "SELSCR-LOGGER": {
+                                "@type": "value",
+                                "value": ""
+                              },
+                              "SELSCR-MESSAGE": {
+                                "@type": "value",
+                                "value": ""
+                              },
+                              "SELSCR-DATE#1": {
+                                "@type": "value",
+                                "value": ""
+                              },
+                              "SELSCR-DATE#2": {
+                                "@type": "value",
+                                "value": ""
+                              }
+                            },
+                            "maxHits": 0
+                          }
+                        }
+                      },
+                      {
+                        "@type": "node",
+                        "docType": "AuditTrailData",
+                        "designDoc": "_design/WorklistAuditTrail",
+                        "nodeName": "$Worklist.allMA$",
+                        "listDisplayView": "indexAuditTrailData",
+                        "counted": false,
+                        "queryPrefetching": false,
+                        "nodeId": "AuditTrail_MA",
+                        "selection": {
+                          "@type": "selection",
+                          "selection": {
+                            "DocumentType": {
+                              "@type": "values",
+                              "values": [
+                                "MA"
+                              ]
+                            }
+                          },
+                          "maxHits": 0
+                        },
+                        "selectionScreen": {
+                          "dataModelMapping": {
+                            "@type": "javascript",
+                            "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-DATE#1').toStart('LogDate');fields.map('SELSCR-DATE#2').toEnd('LogDate');fields.map('SELSCR-LOGGER').to('EntryLogger');fields.map('SELSCR-ACTIVITY').to('Activity');fields.map('SELSCR-MESSAGE').to('Message');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                          },
+                          "viewName": "AuditTrailReportselectionView",
+                          "id": "AuditTrailReportselection",
+                          "presetData": {
+                            "@type": "selection",
+                            "selection": {
+                              "SELSCR-MAX_NUMBER#1": {
+                                "@type": "value",
+                                "value": "500"
+                              },
+                              "SELSCR-ACTIVITY": {
+                                "@type": "value",
+                                "value": ""
+                              },
+                              "SELSCR-LOGGER": {
+                                "@type": "value",
+                                "value": ""
+                              },
+                              "SELSCR-MESSAGE": {
+                                "@type": "value",
+                                "value": ""
+                              },
+                              "SELSCR-DATE#1": {
+                                "@type": "value",
+                                "value": ""
+                              },
+                              "SELSCR-DATE#2": {
+                                "@type": "value",
+                                "value": ""
+                              }
+                            },
+                            "maxHits": 0
+                          }
+                        }
+                      },
+                      {
+                        "@type": "node",
+                        "docType": "AuditTrailDomain",
+                        "designDoc": "_design/WorklistAuditTrail",
+                        "nodeName": "$Worklist.allIdahoUser$",
+                        "listDisplayView": "indexAuditTrailDomain",
+                        "counted": false,
+                        "queryPrefetching": false,
+                        "nodeId": "AuditTrail_Users",
+                        "selection": {
+                          "@type": "selection",
+                          "selection": {
+                            "DocumentType": {
+                              "@type": "values",
+                              "values": [
+                                "IdahoUser"
+                              ]
+                            }
+                          },
+                          "maxHits": 0
+                        },
+                        "selectionScreen": {
+                          "dataModelMapping": {
+                            "@type": "javascript",
+                            "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-LOGGER').to('EntryLogger');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');fields.map('SELSCR-USERACTIVITY').to('Activity');fields.map('SELSCR-DATE#1').toStart('LogDate');fields.map('SELSCR-DATE#2').toEnd('LogDate');fields.map('SELSCR-MESSAGE').to('Message');}).install());}"
+                          },
+                          "viewName": "AuditTrailReportselectionView",
+                          "id": "AuditTrailReportselection",
+                          "presetData": {
+                            "@type": "selection",
+                            "selection": {
+                              "SELSCR-MAX_NUMBER#1": {
+                                "@type": "value",
+                                "value": "500"
+                              },
+                              "SELSCR-USERACTIVITY": {
+                                "@type": "value",
+                                "value": ""
+                              },
+                              "SELSCR-DATE#1": {
+                                "@type": "value",
+                                "value": ""
+                              },
+                              "SELSCR-DATE#2": {
+                                "@type": "value",
+                                "value": ""
+                              },
+                              "SELSCR-LOGGER": {
+                                "@type": "value",
+                                "value": ""
+                              },
+                              "SELSCR-MESSAGE": {
+                                "@type": "value",
+                                "value": ""
+                              }
+                            },
+                            "maxHits": 0
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "node",
+        "nodeName": "$Worklist.Configuration$",
+        "counted": false,
+        "expand": false,
+        "visibleForRoles": [
+          "SuperAdmin",
+          "Admin"
+        ],
+        "nodeId": "Configuration",
+        "active": false,
+        "subnodes": {
+          "@type": "nodes",
+          "nodes": [
+            {
+              "@type": "node",
+              "docType": "InfoPage",
+              "nodeName": "$Worklist.InfoPage$",
+              "listDisplayView": "indexInfoPage",
+              "counted": false,
+              "queryPrefetching": false,
+              "nodeId": "InfoPages",
+              "selection": {
+                "@type": "selection",
+                "selection": {
+                  "scope": {
+                    "@type": "values",
+                    "values": [
+                      "FrontPage"
+                    ]
+                  }
+                },
+                "maxHits": 0
+              }
+            },
+            {
+              "@type": "node",
+              "docType": "AbstractSearchHelp",
+              "designDoc": "_design/SearchHelpIndex",
+              "nodeName": "$Worklist.CompanyCodeEntry$",
+              "listDisplayView": "IV_HEADER-COMP_CODE",
+              "counted": false,
+              "queryPrefetching": false,
+              "nodeId": "Abstract_Search_Help"
+            },
+            {
+              "@type": "node",
+              "docType": "EmailTemplate",
+              "nodeName": "$Worklist.allEmailTemplate$",
+              "listDisplayView": "indexEmailTemplate",
+              "counted": false,
+              "queryPrefetching": false,
+              "nodeId": "EmailTemplates"
+            },
+            {
+              "@type": "node",
+              "docType": "SystemIDWhiteList",
+              "nodeName": "$Worklist.SystemIdWhitelist$",
+              "listDisplayView": "indexSystemIDWhiteList",
+              "counted": false,
+              "queryPrefetching": false,
+              "visibleForRoles": [
+                "SuperAdmin"
+              ],
+              "nodeId": "SystemIDWhiteList"
+            },
+            {
+              "@type": "node",
+              "docType": "IdahoContextSettings",
+              "designDoc": "_design/WorklistContextSetting",
+              "nodeName": "$Worklist.AppContextSetting$",
+              "listDisplayView": "indexContextSettings",
+              "counted": false,
+              "queryPrefetching": false,
+              "nodeId": "App_Context_Settings",
+              "selection": {
+                "@type": "selection",
+                "selection": {
+                  "name": {
+                    "@type": "values",
+                    "values": [
+                      "Email",
+                      "General",
+                      "Password",
+                      "Userhandling",
+                      "Selfregistration"
+                    ]
+                  }
+                },
+                "maxHits": 0
+              }
+            },
+            {
+              "@type": "node",
+              "docType": "IdahoContextSettings",
+              "designDoc": "_design/WorklistContextSetting",
+              "nodeName": "$Worklist.SAMLSettings$",
+              "listDisplayView": "indexContextSettings",
+              "counted": false,
+              "queryPrefetching": false,
+              "visibleForRoles": [
+                "SuperAdmin",
+                "Admin"
+              ],
+              "nodeId": "SAML_Context_Settings",
+              "selection": {
+                "@type": "selection",
+                "selection": {
+                  "name": {
+                    "@type": "values",
+                    "values": [
+                      "saml_idp_configuration",
+                      "saml_sp_configuration",
+                      "saml_assertion_configuration"
+                    ]
+                  }
+                },
+                "maxHits": 0
+              }
+            },
+            {
+              "@type": "node",
+              "docType": "UploadTypes",
+              "nodeName": "$Worklist.UploadTypes$",
+              "counted": false,
+              "nodeId": "UploadTypes",
+              "active": false,
+              "expand": true,
+              "subnodes": {
+                "@type": "nodes",
+                "nodes": [
+                  {
+                    "@type": "node",
+                    "docType": "UploadTypes",
+                    "designDoc": "_design/WorklistUploadTypes",
+                    "nodeName": "$Worklist.UploadTypesIV$",
+                    "listDisplayView": "indexUploadTypesIV",
+                    "counted": false,
+                    "queryPrefetching": false,
+                    "nodeId": "UploadTypesIV"
+                  }
+                ]
+              }
+            },
+            {
+              "@type": "node",
+              "nodeName": "$Fields_Configuration.Fields_Configuration$",
+              "nodeId": "Fields configuration",
+              "active": false,
+              "expand": false,
+              "subnodes": {
+                "@type": "nodes",
+                "nodes": [
+                  {
+                    "@type": "node",
+                    "nodeName": "$Fields_Configuration.Names$",
+                    "active": false,
+                    "nodeId": "Macros",
+                    "expand": false,
+                    "subnodes": {
+                      "@type": "nodes",
+                      "nodes": [
+                        {
+                          "@type": "node",
+                          "docType": "Localization",
+                          "nodeName": "$Worklist.allIV$",
+                          "active": false,
+                          "nodeId": "MacrosIV",
+                          "subnodes": {
+                            "@type": "nodes",
+                            "nodes": [
+                              {
+                                "@type": "node",
+                                "docType": "Localization",
+                                "designDoc": "_design/WorklistMacros",
+                                "nodeName": "$Fields_Configuration.Header$",
+                                "listDisplayView": "index_IV_Header",
+                                "counted": false,
+                                "queryPrefetching": false,
+                                "nodeId": "IV_Header",
+                                "selectionScreen": {
+                                  "dataModelMapping": {
+                                    "@type": "javascript",
+                                    "javascript": "function(context,parameter){return AbstractSelection.selection(new DataModelMapping(parameter,{defaultMappings:false}).configure(function(fields){fields.map('SELSCR-CODE').to('code');}).install());}"
+                                  },
+                                  "viewName": "MacroSelectionView",
+                                  "id": "macroselection",
+                                  "presetData": {
+                                    "@type": "selection",
+                                    "selection": {
+                                      "SELSCR-CODE": {
+                                        "@type": "value",
+                                        "value": ""
+                                      }
+                                    },
+                                    "maxHits": 0
+                                  }
+                                }
+                              },
+                              {
+                                "@type": "node",
+                                "docType": "Localization",
+                                "designDoc": "_design/WorklistMacros",
+                                "nodeName": "$Fields_Configuration.Tables$",
+                                "listDisplayView": "index_IV_Tables",
+                                "counted": false,
+                                "queryPrefetching": false,
+                                "nodeId": "IV_Tables",
+                                "selectionScreen": {
+                                  "dataModelMapping": {
+                                    "@type": "javascript",
+                                    "javascript": "function(context,parameter){return AbstractSelection.selection(new DataModelMapping(parameter,{defaultMappings:false}).configure(function(fields){fields.map('SELSCR-CODE').to('code');}).install());}"
+                                  },
+                                  "viewName": "MacroSelectionView",
+                                  "id": "macroselection",
+                                  "presetData": {
+                                    "@type": "selection",
+                                    "selection": {
+                                      "SELSCR-CODE": {
+                                        "@type": "value",
+                                        "value": ""
+                                      }
+                                    },
+                                    "maxHits": 0
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "@type": "node",
+                          "docType": "Localization",
+                          "designDoc": "_design/WorklistMacros",
+                          "nodeName": "$Worklist.allPO$",
+                          "active": false,
+                          "listDisplayView": "index_PO_Header",
+                          "counted": false,
+                          "queryPrefetching": false,
+                          "nodeId": "MacrosPO",
+                          "subnodes": {
+                            "@type": "nodes",
+                            "nodes": [
+                              {
+                                "@type": "node",
+                                "docType": "Localization",
+                                "designDoc": "_design/WorklistMacros",
+                                "nodeName": "$Fields_Configuration.Header$",
+                                "listDisplayView": "index_PO_Header",
+                                "counted": false,
+                                "queryPrefetching": false,
+                                "nodeId": "PO_Header",
+                                "selectionScreen": {
+                                  "dataModelMapping": {
+                                    "@type": "javascript",
+                                    "javascript": "function(context,parameter){return AbstractSelection.selection(new DataModelMapping(parameter,{defaultMappings:false}).configure(function(fields){fields.map('SELSCR-CODE').to('code');}).install());}"
+                                  },
+                                  "viewName": "MacroSelectionView",
+                                  "id": "macroselection",
+                                  "presetData": {
+                                    "@type": "selection",
+                                    "selection": {
+                                      "SELSCR-CODE": {
+                                        "@type": "value",
+                                        "value": ""
+                                      }
+                                    },
+                                    "maxHits": 0
+                                  }
+                                }
+                              },
+                              {
+                                "@type": "node",
+                                "docType": "Localization",
+                                "designDoc": "_design/WorklistMacros",
+                                "nodeName": "$Fields_Configuration.Tables$",
+                                "listDisplayView": "index_PO_Tables",
+                                "counted": false,
+                                "queryPrefetching": false,
+                                "nodeId": "PO_Tables",
+                                "selectionScreen": {
+                                  "dataModelMapping": {
+                                    "@type": "javascript",
+                                    "javascript": "function(context,parameter){return AbstractSelection.selection(new DataModelMapping(parameter,{defaultMappings:false}).configure(function(fields){fields.map('SELSCR-CODE').to('code');}).install());}"
+                                  },
+                                  "viewName": "MacroSelectionView",
+                                  "id": "macroselection",
+                                  "presetData": {
+                                    "@type": "selection",
+                                    "selection": {
+                                      "SELSCR-CODE": {
+                                        "@type": "value",
+                                        "value": ""
+                                      }
+                                    },
+                                    "maxHits": 0
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "@type": "node",
+                          "docType": "Localization",
+                          "designDoc": "_design/WorklistMacros",
+                          "nodeName": "$Worklist.allMA$",
+                          "active": false,
+                          "listDisplayView": "index_MA_Header",
+                          "counted": false,
+                          "queryPrefetching": false,
+                          "nodeId": "MacrosMA",
+                          "subnodes": {
+                            "@type": "nodes",
+                            "nodes": [
+                              {
+                                "@type": "node",
+                                "docType": "Localization",
+                                "designDoc": "_design/WorklistMacros",
+                                "nodeName": "$Fields_Configuration.Header$",
+                                "listDisplayView": "index_MA_Header",
+                                "counted": false,
+                                "queryPrefetching": false,
+                                "nodeId": "MA_Header",
+                                "selectionScreen": {
+                                  "dataModelMapping": {
+                                    "@type": "javascript",
+                                    "javascript": "function(context,parameter){return AbstractSelection.selection(new DataModelMapping(parameter,{defaultMappings:false}).configure(function(fields){fields.map('SELSCR-CODE').to('code');}).install());}"
+                                  },
+                                  "viewName": "MacroSelectionView",
+                                  "id": "macroselection",
+                                  "presetData": {
+                                    "@type": "selection",
+                                    "selection": {
+                                      "SELSCR-CODE": {
+                                        "@type": "value",
+                                        "value": ""
+                                      }
+                                    },
+                                    "maxHits": 0
+                                  }
+                                }
+                              },
+                              {
+                                "@type": "node",
+                                "docType": "Localization",
+                                "designDoc": "_design/WorklistMacros",
+                                "nodeName": "$Fields_Configuration.Tables$",
+                                "listDisplayView": "index_MA_Tables",
+                                "counted": false,
+                                "queryPrefetching": false,
+                                "nodeId": "MA_Tables",
+                                "selectionScreen": {
+                                  "dataModelMapping": {
+                                    "@type": "javascript",
+                                    "javascript": "function(context,parameter){return AbstractSelection.selection(new DataModelMapping(parameter,{defaultMappings:false}).configure(function(fields){fields.map('SELSCR-CODE').to('code');}).install());}"
+                                  },
+                                  "viewName": "MacroSelectionView",
+                                  "id": "macroselection",
+                                  "presetData": {
+                                    "@type": "selection",
+                                    "selection": {
+                                      "SELSCR-CODE": {
+                                        "@type": "value",
+                                        "value": ""
+                                      }
+                                    },
+                                    "maxHits": 0
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "@type": "node",
+                          "docType": "Localization",
+                          "designDoc": "_design/WorklistMacros",
+                          "nodeName": "$Fields_Configuration.WorklistNodeNames$",
+                          "listDisplayView": "index_Worklist",
+                          "counted": false,
+                          "queryPrefetching": false,
+                          "nodeId": "MacrosWorklist",
+                          "selectionScreen": {
+                            "dataModelMapping": {
+                              "@type": "javascript",
+                              "javascript": "function(context,parameter){return AbstractSelection.selection(new DataModelMapping(parameter,{defaultMappings:false}).configure(function(fields){fields.map('SELSCR-CODE').to('code');}).install());}"
+                            },
+                            "viewName": "MacroSelectionView",
+                            "id": "macroselection",
+                            "presetData": {
+                              "@type": "selection",
+                              "selection": {
+                                "SELSCR-CODE": {
+                                  "@type": "value",
+                                  "value": ""
+                                }
+                              },
+                              "maxHits": 0
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "@type": "node",
+                    "nodeId": "FieldProfiles",
+                    "nodeName": "$Fields_Configuration.Visibility$",
+                    "active": false,
+                    "subnodes": {
+                      "@type": "nodes",
+                      "nodes": [
+                        {
+                          "@type": "node",
+                          "nodeId": "FieldProfilesDocument",
+                          "nodeName": "$Fields_Configuration.Document$",
+                          "active": false,
+                          "subnodes": {
+                            "@type": "nodes",
+                            "nodes": [
+                              {
+                                "@type": "node",
+                                "docType": "AbstractFieldProfile",
+                                "designDoc": "_design/Worklist_default",
+                                "nodeName": "$Fields_Configuration.IVFields$",
+                                "listDisplayView": "indexFieldProfilesDocument",
+                                "counted": false,
+                                "queryPrefetching": false,
+                                "nodeId": "IVFieldProfilesDocument",
+                                "selection": {
+                                  "@type": "selection",
+                                  "selection": {
+                                    "docType": {
+                                      "@type": "values",
+                                      "values": [
+                                        "IV"
+                                      ]
+                                    }
+                                  },
+                                  "maxHits": 0
+                                }
+                              },
+                              {
+                                "@type": "node",
+                                "docType": "AbstractFieldProfile",
+                                "designDoc": "_design/Worklist_default",
+                                "nodeName": "$Fields_Configuration.POFields$",
+                                "listDisplayView": "indexFieldProfilesDocument",
+                                "counted": false,
+                                "queryPrefetching": false,
+                                "nodeId": "POFieldProfilesDocument",
+                                "selection": {
+                                  "@type": "selection",
+                                  "selection": {
+                                    "docType": {
+                                      "@type": "values",
+                                      "values": [
+                                        "PO"
+                                      ]
+                                    }
+                                  },
+                                  "maxHits": 0
+                                }
+                              },
+                              {
+                                "@type": "node",
+                                "docType": "AbstractFieldProfile",
+                                "designDoc": "_design/Worklist_default",
+                                "nodeName": "$Fields_Configuration.MAFields$",
+                                "listDisplayView": "indexFieldProfilesDocument",
+                                "counted": false,
+                                "queryPrefetching": false,
+                                "nodeId": "MAFieldProfilesDocument",
+                                "selection": {
+                                  "@type": "selection",
+                                  "selection": {
+                                    "docType": {
+                                      "@type": "values",
+                                      "values": [
+                                        "MA"
+                                      ]
+                                    }
+                                  },
+                                  "maxHits": 0
+                                }
+                              },
+                              {
+                                "@type": "node",
+                                "docType": "AbstractFieldProfile",
+                                "designDoc": "_design/Worklist_default",
+                                "nodeName": "$Fields_Configuration.UserProfile$",
+                                "listDisplayView": "indexFieldProfilesDocument",
+                                "counted": false,
+                                "queryPrefetching": false,
+                                "nodeId": "IdahoUserFieldProfilesDocument",
+                                "selection": {
+                                  "@type": "selection",
+                                  "selection": {
+                                    "docType": {
+                                      "@type": "values",
+                                      "values": [
+                                        "IdahoUser"
+                                      ]
+                                    }
+                                  },
+                                  "maxHits": 0
+                                }
+                              },
+                              {
+                                "@type": "node",
+                                "docType": "AbstractFieldProfile",
+                                "designDoc": "_design/Worklist_default",
+                                "nodeName": "$Fields_Configuration.UserGroup$",
+                                "listDisplayView": "indexFieldProfilesDocument",
+                                "counted": false,
+                                "queryPrefetching": false,
+                                "nodeId": "IdahoGroupFieldProfilesDocument",
+                                "selection": {
+                                  "@type": "selection",
+                                  "selection": {
+                                    "docType": {
+                                      "@type": "values",
+                                      "values": [
+                                        "IdahoGroup"
+                                      ]
+                                    }
+                                  },
+                                  "maxHits": 0
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "@type": "node",
+                          "nodeId": "FieldProfilesLists",
+                          "nodeName": "$Fields_Configuration.Lists$",
+                          "active": false,
+                          "subnodes": {
+                            "@type": "nodes",
+                            "nodes": [
+                              {
+                                "@type": "node",
+                                "docType": "AbstractFieldProfile",
+                                "designDoc": "_design/Worklist_default",
+                                "nodeName": "$Fields_Configuration.IVFields$",
+                                "listDisplayView": "indexFieldProfilesList",
+                                "counted": false,
+                                "queryPrefetching": false,
+                                "nodeId": "IVFieldProfilesLists",
+                                "selection": {
+                                  "@type": "selection",
+                                  "selection": {
+                                    "docType": {
+                                      "@type": "values",
+                                      "values": [
+                                        "IV"
+                                      ]
+                                    }
+                                  },
+                                  "maxHits": 0
+                                }
+                              },
+                              {
+                                "@type": "node",
+                                "docType": "AbstractFieldProfile",
+                                "designDoc": "_design/Worklist_default",
+                                "nodeName": "$Fields_Configuration.POFields$",
+                                "listDisplayView": "indexFieldProfilesList",
+                                "counted": false,
+                                "queryPrefetching": false,
+                                "nodeId": "POFieldProfilesLists",
+                                "selection": {
+                                  "@type": "selection",
+                                  "selection": {
+                                    "docType": {
+                                      "@type": "values",
+                                      "values": [
+                                        "PO"
+                                      ]
+                                    }
+                                  },
+                                  "maxHits": 0
+                                }
+                              },
+                              {
+                                "@type": "node",
+                                "docType": "AbstractFieldProfile",
+                                "designDoc": "_design/Worklist_default",
+                                "nodeName": "$Fields_Configuration.MAFields$",
+                                "listDisplayView": "indexFieldProfilesList",
+                                "counted": false,
+                                "queryPrefetching": false,
+                                "nodeId": "MAFieldProfilesLists",
+                                "selection": {
+                                  "@type": "selection",
+                                  "selection": {
+                                    "docType": {
+                                      "@type": "values",
+                                      "values": [
+                                        "MA"
+                                      ]
+                                    }
+                                  },
+                                  "maxHits": 0
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "@type": "node",
+              "docType": "WC",
+              "nodeName": "$Worklist.allWC$",
+              "listDisplayView": "indexWC",
+              "counted": false,
+              "queryPrefetching": false,
+              "nodeId": "allWC",
+              "subnodes": {
+                "@type": "nodes",
+                "nodes": [
+                  {
+                    "@type": "node",
+                    "docType": "WCS",
+                    "nodeName": "$Worklist.allWCS$",
+                    "listDisplayView": "indexWCS",
+                    "counted": false,
+                    "queryPrefetching": false,
+                    "visibleForRoles": [
+                      "SuperAdmin"
+                    ],
+                    "nodeId": "allWCSteps"
+                  },
+                  {
+                    "@type": "node",
+                    "docType": "WCG",
+                    "nodeName": "$Worklist.allWCG$",
+                    "listDisplayView": "indexWCG",
+                    "counted": false,
+                    "queryPrefetching": false,
+                    "nodeId": "allWCG"
+                  },
+                  {
+                    "@type": "node",
+                    "docType": "WCN",
+                    "nodeName": "$Worklist.allWCN$",
+                    "listDisplayView": "indexWCN",
+                    "counted": false,
+                    "queryPrefetching": false,
+                    "visibleForRoles": [
+                      "SuperAdmin"
+                    ],
+                    "nodeId": "allWCNSchemas"
+                  }
+                ]
+              }
+            },
+            {
+              "@type": "node",
+              "docType": "IdahoGroup",
+              "nodeName": "$Worklist.allIdahoGroup$",
+              "listDisplayView": "indexIdahoGroup",
+              "counted": false,
+              "queryPrefetching": false,
+              "visibleForRoles": [
+                "SuperAdmin"
+              ],
+              "nodeId": "Groups"
+            }
+          ]
+        }
+      },
+      {
+        "@type": "node",
+        "docType": "MO",
+        "nodeName": "$Worklist.allMO$",
+        "listDisplayView": "indexMO",
+        "counted": false,
+        "queryPrefetching": false,
+        "expand": false,
+        "visibleForRoles": [
+          "SuperAdmin",
+          "Admin"
+        ],
+        "nodeId": "allMO",
+        "selectionScreen": {
+          "dataModelMapping": {
+            "@type": "javascript",
+            "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-STARTDATE#1').toStart('STARTDATE');fields.map('SELSCR-STARTDATE#2').toEnd('STARTDATE');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+          },
+          "viewName": "MOselectionView",
+          "id": "MOselection",
+          "presetData": {
+            "@type": "selection",
+            "selection": {
+              "SELSCR-MAX_NUMBER#1": {
+                "@type": "value",
+                "value": "500"
+              },
+              "SELSCR-STARTDATE#1": {
+                "@type": "javascript",
+                "javascript": "function (context, parameter) {return AbstractValue.value(Std.Date.daysAgo(14));}"
+              },
+              "SELSCR-STARTDATE#2": {
+                "@type": "javascript",
+                "javascript": "function (context, parameter) {return AbstractValue.value(Std.Date.today());}"
+              }
+            },
+            "maxHits": 0
+          }
+        },
+        "subnodes": {
+          "@type": "nodes",
+          "nodes": [
+            {
+              "@type": "node",
+              "docType": "MO",
+              "nodeName": "$Worklist.MO_Error$",
+              "listDisplayView": "indexMO",
+              "counted": false,
+              "queryPrefetching": false,
+              "nodeId": "errorMO",
+              "selection": {
+                "@type": "selection",
+                "selection": {
+                  "ERROR": {
+                    "@type": "values",
+                    "values": [
+                      "X"
+                    ]
+                  }
+                },
+                "maxHits": 0
+              },
+              "selectionScreen": {
+                "dataModelMapping": {
+                  "@type": "javascript",
+                  "javascript": "function(context, parameter) { return AbstractSelection.selection(new DataModelMapping(parameter, {defaultMappings: false}).configure(function(fields){fields.map('SELSCR-STARTDATE#1').toStart('STARTDATE');fields.map('SELSCR-STARTDATE#2').toEnd('STARTDATE');fields.map('SELSCR-MAX_NUMBER#1').to('_MAX-HITS');}).install());}"
+                },
+                "viewName": "MOselectionView",
+                "id": "MOselection",
+                "presetData": {
+                  "@type": "selection",
+                  "selection": {
+                    "SELSCR-MAX_NUMBER#1": {
+                      "@type": "value",
+                      "value": "500"
+                    },
+                    "SELSCR-STARTDATE#1": {
+                      "@type": "javascript",
+                      "javascript": "function (context, parameter) {return AbstractValue.value(Std.Date.daysAgo(14));}"
+                    },
+                    "SELSCR-STARTDATE#2": {
+                      "@type": "javascript",
+                      "javascript": "function (context, parameter) {return AbstractValue.value(Std.Date.today());}"
+                    }
+                  },
+                  "maxHits": 0
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "node",
+        "docType": "IdahoUser",
+        "nodeName": "$Worklist.allIdahoUser_Supplier$",
+        "listDisplayView": "indexIdahoUser",
+        "counted": false,
+        "queryPrefetching": false,
+        "nodeId": "My User Profile",
+        "selection": {
+          "@type": "selection",
+          "selection": {
+            "username": {
+              "@type": "javascript",
+              "javascript": "function(context, parameter){var name=context.getUser().getUsername();return AbstractValue.value(name);}"
+            }
+          },
+          "maxHits": 0
+        },
+        "action": [
+          {
+            "id": "SWWLN0&MY_PROFILE",
+            "name": "$GUI_button.SWWLN0_MY_PROFILE$",
+            "description": "$GUI_button.SWWLN0_MY_PROFILE_TT$",
+            "state": 0,
+            "icon": "employee-id.png",
+            "selected": false
+          }
+        ]
+      }
+    ]
+  },
+  "worklistName": "_worklist_leadbuyeradmin"
+}
