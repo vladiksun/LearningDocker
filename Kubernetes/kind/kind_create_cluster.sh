@@ -5,7 +5,7 @@
 find ./ -name "*.sh" -exec chmod +x {} \;
 
 # export user defined variables
-source ./vars.sh
+source ./kind_vars.sh
 
 # Ubuntu specific
 command -v kubectl >/dev/null 2>&1 || {
@@ -22,56 +22,22 @@ command -v helm >/dev/null 2>&1 || {
 }
 
 deleteCluster() {
-  kind delete cluster --name "$CLUSTER_ALIAS"
+  source ./kind_delete_cluster.sh
 }
 
 deleteCluster
-
+# create registry container unless it already exists
+source ./kind_create_local_registry.sh
 
 #create config from template
 eval "echo \"$(cat "${TEMPLATE_CONFIG_FILE}")\"" > "${CONFIG_FILE}"
 
-#kind create cluster --name "$CLUSTER_ALIAS" --config "${CONFIG_FILE}" --kubeconfig "$KUBECONFIG" --verbosity 5 --wait 5m
-kind create cluster --name "$CLUSTER_ALIAS" --config "${CONFIG_FILE}" --wait 5m --verbosity 5
+#kind create cluster --name "$KIND_CLUSTER_NAME" --config "${CONFIG_FILE}" --kubeconfig "$KUBECONFIG" --verbosity 5 --wait 5m
+kind create cluster --name "$KIND_CLUSTER_NAME" --config "${CONFIG_FILE}" --wait 5m --verbosity 5
 
-# Install Ingress NGINX
-# Apply the mandatory ingress-nginx components
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.28.0/deploy/static/mandatory.yaml
-# and expose the nginx service using NodePort.
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.28.0/deploy/static/provider/baremetal/service-nodeport.yaml
-# Apply kind specific patches to forward the hostPorts to the ingress controller, set taint tolerations and schedule it to the custom labelled node.
-kubectl patch deployments -n ingress-nginx nginx-ingress-controller -p '{"spec":{"template":{"spec":{"containers":[{"name":"nginx-ingress-controller","ports":[{"containerPort":80,"hostPort":80},{"containerPort":443,"hostPort":443}]}],"nodeSelector":{"ingress-ready":"true"},"tolerations":[{"key":"node-role.kubernetes.io/master","operator":"Equal","effect":"NoSchedule"}]}}}}'
-# Create TLS secret to support https
-kubectl create secret tls tls-secret --cert=tls.cert --key=tls.key
-
-# Apply test services to test ingress works
-# https://kind.sigs.k8s.io/docs/user/ingress/
-kubectl apply -f ingress-test-services.yaml
-kubectl apply -f ingress-nginx.yaml
-
-# Installing and Configuring Cert-Manager
-# In this step, we’ll install cert-manager into our cluster. cert-manager is a Kubernetes service that provisions TLS certificates
-# from Let’s Encrypt and other certificate authorities and manages their lifecycles. Certificates can be requested and configured by annotating
-# Ingress Resources with the cert-manager.io/issuer annotation, appending a tls section to the Ingress spec,
-# and configuring one or more Issuers or ClusterIssuers to specify your preferred certificate authority
-kubectl create namespace cert-manager
-kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.13.1/cert-manager.yaml
-kubectl create -f ./oauth2-proxy/staging_issuer.yaml
-kubectl describe certificate
-kubectl create -f ./oauth2-proxy/prod_issuer.yaml
-
-kubectl -n default create secret generic oauth2-proxy-creds \
---from-literal=cookie-secret="$OAUTH2_PROXY_COOKIE_SECRET" \
---from-literal=client-id="$OAUTH2_PROXY_CLIENT_ID" \
---from-literal=client-secret="$OAUTH2_PROXY_CLIENT_SECRET"
-
-helm repo add stable https://kubernetes-charts.storage.googleapis.com
-
-helm repo update \
-&& helm upgrade oauth2-proxy --install stable/oauth2-proxy \
---reuse-values \
---values ./oauth2-proxy/oauth2-proxy-values.yaml
-kubectl apply -f ./oauth2-proxy/oauth2-proxy-ingress.yaml
+#source ./kind_install_cert_manager.sh
+#source ./kind_install_oauth2_proxy.sh
+source ./kind_install_ingress.sh
 
 
 # Install dashboard
@@ -90,20 +56,7 @@ if [ -n "$K8DASH_DASHBOARD_URL" ]; then
   kubectl create clusterrolebinding k8dash-sa --clusterrole=cluster-admin --serviceaccount=default:k8dash-sa
 fi
 
-checkIngressWorks() {
-  SERVICE_VIA_INGRESS_STATUS=$(curl s -o /dev/null --connect-timeout 3 --max-time 5 localhost/$INGRESS_TEST_MARKER)
 
-  if [ "$SERVICE_VIA_INGRESS_STATUS" == "$INGRESS_TEST_MARKER" ]; then
-    printf "\n"
-    echo "Ingress is active and OK"
-    printf "\n"
-  else
-    printf "\n"
-    echo "ERROR - Ingress is no active and KO"
-    printf "\n"
-    abort
-  fi
-}
 
 abort() {
   deleteCluster
@@ -115,9 +68,6 @@ abort() {
   echo "An error occurred. Exiting..." >&2
   exit 1
 }
-
-# Must be used after "kubectl proxy"
-#checkIngressWorks
 
 getOS() {
   unameOut="$(uname -s)"

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: kubectl-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubectl-proxy
+  template:
+    metadata:
+      labels:
+        app: kubectl-proxy
+    spec:
+      containers:
+        - name: kubectl-proxy
+          image: localhost:5000/kubectl-proxy:latest
+
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: kubectl-proxy-service
+spec:
+  selector:
+    app: kubectl-proxy
+  ports:
+    - port: 8001
+
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: dashboard-ingress
+spec:
+  rules:
+    - host: dashboard.int.mydomain.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: kubectl-proxy-service
+              servicePort: 8001
