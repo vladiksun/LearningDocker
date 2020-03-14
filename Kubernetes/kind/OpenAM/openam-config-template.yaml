@@ -10,7 +10,7 @@ spec:
   #    - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   hostPath:
-    path: /DockerMounts/openam
+    path: ${EXTRA_MOUNTS_CONTAINER_PATH}/openam
 
 ---
 
@@ -25,16 +25,18 @@ spec:
   accessModes:
     #    - ReadWriteOnce
     - ReadWriteMany
-  storageClassName: ""
+  storageClassName: \"\"
 
 ---
 
 apiVersion: apps/v1
-kind: ReplicaSet
+kind: Deployment
 metadata:
   name: openam-app
 spec:
   replicas: 1
+  minReadySeconds: 30
+  progressDeadlineSeconds: 120
   selector:
     matchLabels:
       app: openam-app
@@ -51,10 +53,49 @@ spec:
               mountPath: /usr/openam/config
           ports:
             - containerPort: 8080
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /openam/isAlive.jsp
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 20
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 3
       volumes:
         - name: openam-volume
           persistentVolumeClaim:
             claimName: openampvc
+
+---
+
+#apiVersion: apps/v1
+#kind: ReplicaSet
+#metadata:
+#  name: openam-app
+#spec:
+#  replicas: 1
+#  selector:
+#    matchLabels:
+#      app: openam-app
+#  template:
+#    metadata:
+#      labels:
+#        app: openam-app
+#    spec:
+#      containers:
+#        - image: openidentityplatform/openam
+#          name: openam
+#          volumeMounts:
+#            - name: openam-volume
+#              mountPath: /usr/openam/config
+#          ports:
+#            - containerPort: 8080
+#      volumes:
+#        - name: openam-volume
+#          persistentVolumeClaim:
+#            claimName: openampvc
 
 ---
 kind: Service
