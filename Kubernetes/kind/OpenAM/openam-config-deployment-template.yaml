@@ -10,7 +10,7 @@ spec:
   #    - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   hostPath:
-    path: ${EXTRA_MOUNTS_CONTAINER_PATH}/openam
+    path: ${EXTRA_MOUNTS_CONTAINER_PATH}/OpenAMPath/openam
 
 ---
 

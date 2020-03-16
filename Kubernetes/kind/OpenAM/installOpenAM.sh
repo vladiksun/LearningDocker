@@ -17,9 +17,8 @@
 source ../kind_vars.sh
 
 #create config from template
-eval "echo \"$(cat openam-config-template.yaml)\"" > openam.yaml
-
-kubectl apply -f openam.yaml
+eval "echo \"$(cat openam-config-deployment-template.yaml)\"" > openam-deployment.yaml
+kubectl apply -f openam-deployment.yaml
 
 #kubectl rollout status deployment openam-app
 
