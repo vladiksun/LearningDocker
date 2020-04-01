@@ -35,6 +35,9 @@ eval "echo \"$(cat "${TEMPLATE_CONFIG_FILE}")\"" > "${CONFIG_FILE}"
 #kind create cluster --name "$KIND_CLUSTER_NAME" --config "${CONFIG_FILE}" --kubeconfig "$KUBECONFIG" --verbosity 5 --wait 5m
 kind create cluster --name "$KIND_CLUSTER_NAME" --config "${CONFIG_FILE}" --wait 5m --verbosity 5
 
+# add charts repository
+source ./kind_init_helm.sh
+
 #source ./kind_install_cert_manager.sh
 #source ./kind_install_oauth2_proxy.sh
 source ./kind_install_ingress.sh

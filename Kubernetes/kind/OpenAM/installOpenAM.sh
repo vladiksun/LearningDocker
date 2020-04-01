@@ -13,12 +13,15 @@
 # should set minReadySeconds appropriately
 
 
-# export user defined variables
+#   export user defined variables
 source ../kind_vars.sh
 
-#create config from template
+#   create config from template
 eval "echo \"$(cat openam-config-deployment-template.yaml)\"" > openam-deployment.yaml
-kubectl apply -f openam-deployment.yaml
+eval "echo \"$(cat openam-config-statfullset-template.yaml)\"" > openam-statfullset.yaml
 
-#kubectl rollout status deployment openam-app
+kubectl apply -f openam-statfullset.yaml
+# kubectl apply -f openam-deployment.yaml
+
+# kubectl rollout status deployment openam-app
 

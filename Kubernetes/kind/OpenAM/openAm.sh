@@ -41,6 +41,9 @@ docker run -h openam.example.com -p 8080:8080 --volume C:\Users\vladislav.bondar
 docker inspect --format "{{.Mounts}}" openam_local_config
 
 
+kubectl run -it srvlookup --image=tutum/dnsutils --rm --restart=Never -- dig SRV openam-service.default.svc.cluster.local
+
+
 
 
 
