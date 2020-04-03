@@ -124,23 +124,26 @@ printDashboardToken() {
 }
 
 pingDashboard() {
+  local full_url="$HTTP_PART$DASHBOARD_URL"
+
   declare -A statusArray=([200]=1 [308]=1)
 
   STATUS=0
-  printf "%s" "Waiting for $DASHBOARD_URL ..."
+  printf "%s" "Waiting for $full_url ..."
   printf "\n"
   printf "\n"
 
   while ! [[ ${statusArray[$STATUS]} ]]; do
     printf "%c" "."
-    CURL_STATUS=$(curl -s -o /dev/null -w "%{http_code}\n" $DASHBOARD_URL)
+
+    local curl_status=$(curl -s -o /dev/null -w "%{http_code}\n" "$full_url")
 
     # get rid off carriage return
-    STATUS=${CURL_STATUS//$'\r'/}
+    STATUS=${curl_status//$'\r'/}
 
     if [[ ${statusArray[$STATUS]} ]]; then
       printf "\n"
-      echo "$DASHBOARD_URL is up, returned $STATUS"
+      echo "$full_url is up, returned $STATUS"
       echo "Dashboard is available"
 
       openDashboard

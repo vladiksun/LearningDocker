@@ -1,6 +1,9 @@
 
 kubectl cluster-info --context kind-testKindCluster
 
+kubectl config view --raw
+kubectl config view --raw > cluster-config.yaml
+
 # Install dashboard
 # http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login
 kubectl proxy

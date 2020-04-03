@@ -3,6 +3,9 @@
 # https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/
 #KUBECONFIG="$HOME/.kube/config"
 
+API_SERVER_ADDRESS='127.0.0.1'
+API_SERVER_PORT=32772
+
 TEMPLATE_CONFIG_FILE=kind-example-config-template.yaml
 CONFIG_FILE=kind-example-config.yaml
 
@@ -12,7 +15,7 @@ HTTP_PART='http://'
 # desired cluster name; default is "kind"
 KIND_CLUSTER_NAME="${KIND_CLUSTER_NAME:-kind}"
 
-KUBERNETES_DASHBOARD_URL='localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login'
+KUBERNETES_DASHBOARD_URL="${API_SERVER_ADDRESS}:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login"
 K8DASH_DASHBOARD_URL='k8dash.example.com'
 
 DASHBOARD_URL=$KUBERNETES_DASHBOARD_URL
