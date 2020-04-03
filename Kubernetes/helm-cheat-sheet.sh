@@ -63,4 +63,6 @@ helm install full-coral ./mychart
 helm get manifest full-coral
 helm uninstall full-coral
 helm install --debug --dry-run goodly-guppy ./mychart
-
+helm install --dry-run --debug --set favoriteDrink=slurm good-puppy ./mychart
+# Override default value in the chart by setting it to null
+helm install stable/drupal --set image=my-registry/drupal:0.1.0 --set livenessProbe.exec.command=[cat,docroot/CHANGELOG.txt] --set livenessProbe.httpGet=null
