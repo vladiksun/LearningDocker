@@ -38,6 +38,10 @@ docker run -h openam.example.com -p 8080:8080 --volume C:\Users\vladislav.bondar
 
 docker run -h openam.example.com -p 8080:8080 --volume C:\Users\vladislav.bondarchuk\Downloads\DockerMounts\OpenAM\config:/usr/openam/config --name openam
 
+docker run -h openam.example.com -p 8080:8080 --volume C:\Users\vladislav.bondarchuk\Downloads\DockerMounts\OpenAMPath\openam:/usr/openam/config --name openam
+
+docker run -h openam.example.com -p 8080:8080 --volume C:\Users\vladislav.bondarchuk\Downloads\DockerMounts\OpenAMPath\openam:/usr/openam/config --name openam
+
 docker inspect --format "{{.Mounts}}" openam_local_config
 
 

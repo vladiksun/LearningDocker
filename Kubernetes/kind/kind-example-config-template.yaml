@@ -37,8 +37,6 @@ nodes:
     extraPortMappings:
       - containerPort: 30000 # this port can be used as a NodePort to expose a service
         hostPort: 30001
-      - containerPort: 8080
-        hostPort: 9001
     extraMounts:
       - hostPath: ${EXTRA_MOUNTS_HOST_PATH}
         containerPath: ${EXTRA_MOUNTS_CONTAINER_PATH}
@@ -46,8 +44,6 @@ nodes:
     extraPortMappings:
       - containerPort: 30000
         hostPort: 30002
-      - containerPort: 8080
-        hostPort: 9002
     extraMounts:
       - hostPath: ${EXTRA_MOUNTS_HOST_PATH}
         containerPath: ${EXTRA_MOUNTS_CONTAINER_PATH}
@@ -55,8 +51,6 @@ nodes:
     extraPortMappings:
       - containerPort: 30000
         hostPort: 30003
-      - containerPort: 8080
-        hostPort: 9003
     extraMounts:
       - hostPath: ${EXTRA_MOUNTS_HOST_PATH}
         containerPath: ${EXTRA_MOUNTS_CONTAINER_PATH}
