@@ -1,0 +1,39 @@
+#  https://github.com/helm/charts/blob/master/stable/memcached/values.yaml
+
+## Memcached image and tag
+## ref: https://hub.docker.com/r/library/memcached/tags/
+##
+image: memcached:1.4.34
+
+## Specify a imagePullPolicy
+## 'Always' if imageTag is 'latest', else set to 'IfNotPresent'
+## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+##
+imagePullPolicy: IfNotPresent
+
+replicaCount: 1
+pdbMinAvailable: 1
+
+memcached:
+  ## Various values that get set as command-line flags.
+  ## ref: https://github.com/memcached/memcached/wiki/ConfiguringServer#commandline-arguments
+  ##
+
+  maxItemMemory: 128
+  #verbosity: v
+  extendedOptions: modern
+
+  ## Additional command line arguments to pass to memcached
+  ## E.g. to specify a maximum value size
+  ## extraArgs:
+  ##   - -I 2m
+  extraArgs:
+     - -I 20m
+
+  ## Configure resource requests and limits
+  ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+  ##
+  resources:
+    requests:
+      memory: 2Gi
+      cpu: "1"

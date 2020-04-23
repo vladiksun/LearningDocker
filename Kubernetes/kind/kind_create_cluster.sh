@@ -52,7 +52,7 @@ kubectl apply -f ./dashboard/dashboard-adminuser-role-binding.yaml
 if [ -n "$K8DASH_DASHBOARD_URL" ]; then
   # Install dashboard K8Dash
   # https://github.com/herbrandson/k8dash
-  kubectl apply -f kubernetes-k8dash.yaml
+  kubectl apply -f ./dashboard/kubernetes-k8dash.yaml
   # Create the service account in the current namespace (we assume default)
   kubectl create serviceaccount k8dash-sa
   # Give that service account root on the cluster

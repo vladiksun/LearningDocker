@@ -32,7 +32,9 @@ nodes:
       - containerPort: 443
         hostPort: 443
         protocol: TCP
-
+      - containerPort: 11211
+        hostPort: 11211
+        protocol: TCP
   - role: worker
     extraPortMappings:
       - containerPort: 30000 # this port can be used as a NodePort to expose a service

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dev-tools
+  namespace: default
+  labels:
+    app: dev-tools
+spec:
+  containers:
+    - name: dev-tools
+      image: localhost:5000/dev-tools:latest
+  restartPolicy: Never
