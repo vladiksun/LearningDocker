@@ -3,7 +3,9 @@
 ## Memcached image and tag
 ## ref: https://hub.docker.com/r/library/memcached/tags/
 ##
+
 image: memcached:1.4.34
+
 
 ## Specify a imagePullPolicy
 ## 'Always' if imageTag is 'latest', else set to 'IfNotPresent'
@@ -11,8 +13,8 @@ image: memcached:1.4.34
 ##
 imagePullPolicy: IfNotPresent
 
-replicaCount: 1
-pdbMinAvailable: 1
+replicaCount: 2
+pdbMinAvailable: 2
 
 memcached:
   ## Various values that get set as command-line flags.
@@ -35,5 +37,5 @@ memcached:
   ##
   resources:
     requests:
-      memory: 2Gi
+      memory: 512Mi
       cpu: "1"
