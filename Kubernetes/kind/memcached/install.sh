@@ -52,17 +52,13 @@ forwardPortForNode() {
   printf "\n"
   echo "Waiting for Pod $pod_number "
 
-  local name_from_cluster=$(kubectl get pods --field-selector=status.phase=Running,metadata.name="$name_to_check" | grep "$name_to_check" | awk '{print $1}')
-  local is_ready_marker=$(kubectl get pods --field-selector=status.phase=Running,metadata.name="$name_to_check" | grep "$ready_marker" | awk '{print $2}')
+  local name_from_cluster=$(kubectl get pods --field-selector=status.phase=Running,metadata.name="$name_to_check" --ignore-not-found | grep "$name_to_check" | awk '{print $1}')
+  local is_ready_marker=$(kubectl get pods --field-selector=status.phase=Running,metadata.name="$name_to_check" --ignore-not-found | grep "$ready_marker" | awk '{print $2}')
 
   # Ping until available
   while [[ "$name_from_cluster" != "$name_to_check" ]] || [[ "$ready_marker" != "$is_ready_marker" ]]; do
     if [[ "$name_from_cluster" != "$name_to_check" ]] || [[ "$ready_marker" != "$is_ready_marker" ]]; then
-      printf "%c" "..."
-    else
-      printf "\n"
-      echo "Pod $pod_number is available. Forwarding ports...."
-      break
+      printf "%c" "."
     fi
 
     name_from_cluster=$(kubectl get pods --field-selector=status.phase=Running,metadata.name="$name_to_check" | grep "$name_to_check" | awk '{print $1}')
@@ -74,6 +70,8 @@ forwardPortForNode() {
   if [ "$machine" == "Linux" ]; then
     error_exit "No Linux impl found"
   elif [ "$machine" == "Cygwin" ]; then
+    printf "\n"
+    echo "Pod $pod_number is available. Forwarding ports...."
     cygstart mintty --hold always --exec kubectl port-forward $(kubectl get pods --namespace default -l "app.kubernetes.io/name=memcached,app.kubernetes.io/instance=memcached" -o jsonpath="{.items[$pod_number].metadata.name}") $hostPort:11211
   elif [ "$machine" == "MinGw" ]; then
     error_exit "No Mac OS impl found"
