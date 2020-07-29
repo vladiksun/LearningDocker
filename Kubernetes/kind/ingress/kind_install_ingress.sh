@@ -12,8 +12,8 @@ kubectl create secret tls tls-secret --cert=tls.cert --key=tls.key
 
 # Apply test services to test ingress works
 # https://kind.sigs.k8s.io/docs/user/ingress/
-kubectl apply -f ingress-test-services.yaml
-kubectl apply -f ingress-nginx.yaml
+kubectl apply -f ./ingress/ingress-test-services.yaml
+kubectl apply -f ./ingress/ingress-nginx.yaml
 
 
 checkIngressWorks() {

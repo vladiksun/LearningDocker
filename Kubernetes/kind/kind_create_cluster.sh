@@ -6,6 +6,7 @@ find ./ -name "*.sh" -exec chmod +x {} \;
 
 # export user defined variables
 source ./kind_vars.sh
+source ./functions.sh --source-only
 
 # Ubuntu specific
 command -v kubectl >/dev/null 2>&1 || {
@@ -38,13 +39,12 @@ kind create cluster --name "$KIND_CLUSTER_NAME" --config "${CONFIG_FILE}" --wait
 # add charts repository
 source ./kind_init_helm.sh
 
-#source ./kind_install_cert_manager.sh
+#source ./cert-manager/kind_install_cert_manager.sh
 #source ./kind_install_oauth2_proxy.sh
-source ./kind_install_ingress.sh
+source ./ingress/kind_install_ingress.sh
 
 # Install dashboard
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta6/aio/deploy/recommended.yaml
-# kubectl apply -f kubernetes-dashboard-bypass-login-v2.0.0-beta6.yaml
 kubectl apply -f ./dashboard/dashboard-adminuser.yaml
 kubectl apply -f ./dashboard/dashboard-adminuser-role-binding.yaml
 
@@ -67,17 +67,6 @@ abort() {
 '
   echo "An error occurred. Exiting..." >&2
   exit 1
-}
-
-getOS() {
-  unameOut="$(uname -s)"
-  case "${unameOut}" in
-  Linux*) machine=Linux ;;
-  Darwin*) machine=Mac ;;
-  CYGWIN*) machine=Cygwin ;;
-  MINGW*) machine=MinGw ;;
-  *) machine="UNKNOWN:${unameOut}" ;;
-  esac
 }
 
 openDashboard() {

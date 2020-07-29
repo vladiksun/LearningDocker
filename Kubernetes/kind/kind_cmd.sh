@@ -14,3 +14,7 @@ kind export logs --name testKindCluster
 
 docker system prune
 
+
+
+http://127.0.0.1:8001/api/v1/namespaces/default/services/http:mailslurper-service:/proxy/#/
+

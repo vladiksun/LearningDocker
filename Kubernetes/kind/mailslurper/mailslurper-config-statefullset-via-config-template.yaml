@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mailslurper-config
+  namespace: default
+data:
+  config.json: |
+    {
+    	"wwwAddress": "localhost",
+    	"wwwPort": 8082,
+    	"serviceAddress": "localhost",
+    	"servicePort": 8085,
+    	"smtpAddress": "localhost",
+    	"smtpPort": 2500,
+    	"dbEngine": "SQLite",
+    	"dbHost": "",
+    	"dbPort": 0,
+    	"dbDatabase": "./mailslurper.db",
+    	"dbUserName": "",
+    	"dbPassword": "",
+    	"maxWorkers": 1000,
+    	"autoStartBrowser": false,
+    	"keyFile": "",
+    	"certFile": "",
+    	"adminKeyFile": "",
+    	"adminCertFile": "",
+    	"authenticationScheme": "",
+    	"authSecret": "",
+    	"authSalt": "",
+    	"authTimeoutInMinutes": 1,
+    	"credentials": {}
+    }
+
+---
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mailslurper-app
+spec:
+  serviceName: mailslurper-service
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mailslurper-app
+  template:
+    metadata:
+      labels:
+        app: mailslurper-app
+    spec:
+      containers:
+        - image: marcopas/docker-mailslurper
+          name: mailslurper
+          volumeMounts:
+            - name: config-volume
+              mountPath: /opt/mailslurper/config.json
+              subPath: config.json
+          ports:
+            - name: wwwPort
+              containerPort: 8082
+              protocol: TCP
+            - name: servicePort
+              containerPort: 8085
+              protocol: TCP
+            - name: smtpPort
+              containerPort: 2500
+              protocol: TCP
+      volumes:
+        - name: config-volume
+          configMap:
+            name: mailslurper-config
+---
+
