@@ -9,6 +9,11 @@ docker exec -t -i <container_name>  /bin/bash
 
 ################  jump into container bash as root ################
 docker exec --user="root" -it <container_name> /bin/bash
+
+# exec into container found by label
+docker exec --user="root" -it $(docker ps -aq --filter "label=webapp_id") /bin/bash
+
+
 docker attach <container_name>
 
 
@@ -71,12 +76,6 @@ docker build -t dia_ch3/dockerfile:latest ch3_dockerfile
 
 ################  jump into container bash ################
 docker exec -t -i <container_name>  /bin/bash
-
-################  jump into container bash as root ################
-docker exec --user="root" -it <container_name> /bin/bash
-docker attach <container_name>
-
-
 
 ################################################################################################################################
 # Port forwardings can be specified ONLY with docker run command.
