@@ -2,9 +2,13 @@ FROM ubuntu:18.04
 
 ENV TERM=xterm
 
-RUN apt-get update
-RUN apt-get install netcat -y
-RUN apt-get install curl -y
-RUN apt-get install libmemcached-tools -y
+RUN set -eux; \
+	apt-get update; \
+	apt-get install -y --no-install-recommends \
+	    software-properties-common \
+		netcat \
+		curl \
+		wget \
+		libmemcached-tools
 
 ENTRYPOINT ["/bin/sh", "-c", "top"]
