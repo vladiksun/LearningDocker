@@ -49,13 +49,15 @@ forwardPortForNode() {
     is_ready_marker=$(kubectl get pods --field-selector=status.phase=Running,metadata.name="$name_to_check" | grep "$ready_marker" | awk '{print $2}')
   done
 
+  port_forward_cmd=$(kubectl port-forward "$(kubectl get pods --namespace default -l "$searchLabel" -o jsonpath="{.items[$podNumber].metadata.name}")" "$hostPort:$nodePort")
   getOS
 
   if [ "$machine" == "Linux" ]; then
-    error_exit "No Linux impl found"
+    gnome-terminal -x sh -c "$port_forward_cmd; bash"
   elif [ "$machine" == "Cygwin" ]; then
     printf "\n"
     echo "Pod $podNumber is available. Forwarding ports...."
+    #TODO - check port_forward_cmd above
     cygstart mintty --hold always --exec kubectl port-forward $(kubectl get pods --namespace default -l $searchLabel -o jsonpath="{.items[$pod_number].metadata.name}") $hostPort:$nodePort
   elif [ "$machine" == "MinGw" ]; then
     error_exit "No Mac OS impl found"
