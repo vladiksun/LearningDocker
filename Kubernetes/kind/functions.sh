@@ -39,6 +39,10 @@ forwardPortForNode() {
   local name_from_cluster=$(kubectl get pods --field-selector=status.phase=Running,metadata.name="$name_to_check" --ignore-not-found | grep "$name_to_check" | awk '{print $1}')
   local is_ready_marker=$(kubectl get pods --field-selector=status.phase=Running,metadata.name="$name_to_check" --ignore-not-found | grep "$ready_marker" | awk '{print $2}')
 
+  echo "name_to_check = $name_to_check"
+  echo "name_from_cluster = $name_from_cluster"
+  echo "Waiting for Pod $podNumber "
+
   # Ping until available
   while [[ "$name_from_cluster" != "$name_to_check" ]] || [[ "$ready_marker" != "$is_ready_marker" ]]; do
     if [[ "$name_from_cluster" != "$name_to_check" ]] || [[ "$ready_marker" != "$is_ready_marker" ]]; then
@@ -48,8 +52,7 @@ forwardPortForNode() {
     name_from_cluster=$(kubectl get pods --field-selector=status.phase=Running,metadata.name="$name_to_check" | grep "$name_to_check" | awk '{print $1}')
     is_ready_marker=$(kubectl get pods --field-selector=status.phase=Running,metadata.name="$name_to_check" | grep "$ready_marker" | awk '{print $2}')
   done
-
-  port_forward_cmd=$(kubectl port-forward "$(kubectl get pods --namespace default -l "$searchLabel" -o jsonpath="{.items[$podNumber].metadata.name}")" "$hostPort:$nodePort")
+#  port_forward_cmd=$(kubectl port-forward "$(kubectl get pods --namespace default -l "$searchLabel" -o jsonpath="{.items[$podNumber].metadata.name}")" "$hostPort:$nodePort")
   getOS
 
   if [ "$machine" == "Linux" ]; then
@@ -58,7 +61,8 @@ forwardPortForNode() {
     printf "\n"
     echo "Pod $podNumber is available. Forwarding ports...."
     #TODO - check port_forward_cmd above
-    cygstart mintty --hold always --exec kubectl port-forward $(kubectl get pods --namespace default -l $searchLabel -o jsonpath="{.items[$pod_number].metadata.name}") $hostPort:$nodePort
+    cygstart mintty --hold always --exec kubectl port-forward $(kubectl get pods --namespace default -l $searchLabel -o jsonpath="{.items[$podNumber].metadata.name}") $hostPort:$nodePort
+    #cygstart mintty --hold always --exec "$port_forward_cmd"
   elif [ "$machine" == "MinGw" ]; then
     error_exit "No Mac OS impl found"
   fi
