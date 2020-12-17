@@ -38,7 +38,7 @@ spec:
           ports:
             - containerPort: 8080
           readinessProbe:
-            failureThreshold: 3
+            failureThreshold: 5
             httpGet:
               path: /openam/isAlive.jsp
               port: 8080
@@ -71,6 +71,8 @@ spec:
     - port: 8080
 
 ---
+# add openam.example.com to hosts file
+# http://openam.example.com/openam/
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
