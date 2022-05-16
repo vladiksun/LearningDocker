@@ -41,12 +41,11 @@ source ./kind_init_helm.sh
 
 #source ./cert-manager/kind_install_cert_manager.sh
 #source ./kind_install_oauth2_proxy.sh
-source ./ingress/kind_install_ingress.sh
+#source ./ingress/kind_install_ingress.sh
 
 # Install dashboard
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta6/aio/deploy/recommended.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.1/aio/deploy/recommended.yaml
 kubectl apply -f ./dashboard/dashboard-adminuser.yaml
-kubectl apply -f ./dashboard/dashboard-adminuser-role-binding.yaml
 
 if [ -n "$K8DASH_DASHBOARD_URL" ]; then
   # Install dashboard K8Dash
@@ -87,7 +86,7 @@ printDashboardToken() {
   local full_url="$HTTP_PART$DASHBOARD_URL"
 
   # get token
-  CLUSTER_SECRET=$(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
+  CLUSTER_SECRET=$(kubectl -n kubernetes-dashboard get secret | grep admin-user-secret | awk '{print $1}')
 
   TOKEN=$(kubectl -n kubernetes-dashboard describe secret "$CLUSTER_SECRET" | grep 'token:' | awk '{print $2}')
 

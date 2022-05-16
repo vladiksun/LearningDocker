@@ -16,12 +16,13 @@ HTTP_PART='http://'
 KIND_CLUSTER_NAME="${KIND_CLUSTER_NAME:-kind}"
 
 KUBERNETES_DASHBOARD_URL="${API_SERVER_ADDRESS}:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login"
-K8DASH_DASHBOARD_URL='k8dash.example.com'
+#K8DASH_DASHBOARD_URL='k8dash.example.com'
 
 DASHBOARD_URL=$KUBERNETES_DASHBOARD_URL
 INGRESS_TEST_MARKER='foo'
 
-EXTRA_MOUNTS_HOST_PATH='C:\Users\vladislav.bondarchuk\Downloads\DockerMounts'
+#EXTRA_MOUNTS_HOST_PATH='C:\Users\vladislav.bondarchuk\Downloads\DockerMounts'
+EXTRA_MOUNTS_HOST_PATH='/DockerMounts'
 EXTRA_MOUNTS_CONTAINER_PATH='/DockerMounts'
 
 # docker run -ti --rm python:3-alpine python -c 'import secrets,base64; print(base64.b64encode(base64.b64encode(secrets.token_bytes(16))));'
